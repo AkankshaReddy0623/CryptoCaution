@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoCaution — Scam Awareness Site</title>
+    <style>
+        :root {
+            --deep-space-purple: #4A148C;
+            --cosmic-blue: #0D47A1;
+            --aurora-purple: #B388FF;
+            --galaxy-black: #090909;
+            --star-white: #FFFFFF;
+            --supernova-yellow: #FFD600;
+            --red-giant: #D50000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--galaxy-black);
+            color: var(--star-white);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--deep-space-purple);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--star-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: var(--star-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--aurora-purple);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--star-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.2), rgba(13, 71, 161, 0.2));
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(179, 136, 255, 0.1) 0%, rgba(9, 9, 9, 0) 50%),
+                radial-gradient(circle at 80% 70%, rgba(13, 71, 161, 0.1) 0%, rgba(9, 9, 9, 0) 50%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--aurora-purple);
+            color: var(--star-white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(179, 136, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(179, 136, 255, 0.6);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background-color: var(--cosmic-blue);
+            padding: 15px 0;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            margin: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .stat-item i {
+            margin-right: 10px;
+            color: var(--supernova-yellow);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Highlights Section */
+        .highlights {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--aurora-purple);
+            margin: 15px auto 0;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-header {
+            background-color: var(--deep-space-purple);
+            color: var(--star-white);
+            padding: 15px 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .alert-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .alert-badge {
+            background-color: var(--red-giant);
+            color: var(--star-white);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-content h4 {
+            margin-bottom: 5px;
+        }
+
+        .alert-content p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .protective-habit {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .protective-habit:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .habit-check {
+            width: 22px;
+            height: 22px;
+            background-color: var(--aurora-purple);
+            color: var(--star-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .habit-text {
+            flex: 1;
+        }
+
+        .habit-text h4 {
+            margin-bottom: 5px;
+        }
+
+        .habit-text p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .view-all-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--aurora-purple);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .view-all-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Chart Styles */
+        .chart-container {
+            height: 220px;
+            margin-bottom: 15px;
+        }
+
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            border-radius: 2px;
+        }
+
+        /* Quiz Widget */
+        .quiz-section {
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid var(--deep-space-purple);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .quiz-header p {
+            opacity: 0.8;
+        }
+
+        .quiz-question {
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .quiz-question.active {
+            display: block;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            list-style: none;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .quiz-option:hover {
+            background: rgba(179, 136, 255, 0.1);
+            border-color: var(--aurora-purple);
+        }
+
+        .quiz-option.selected {
+            background: rgba(179, 136, 255, 0.2);
+            border-color: var(--aurora-purple);
+        }
+
+        .option-marker {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--aurora-purple);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .quiz-option.selected .option-marker::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--aurora-purple);
+        }
+
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .quiz-btn {
+            background-color: var(--cosmic-blue);
+            color: var(--star-white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .quiz-btn:hover {
+            background-color: #0A367C;
+        }
+
+        .quiz-btn:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        .quiz-results {
+            text-align: center;
+            display: none;
+        }
+
+        .results-score {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--aurora-purple);
+        }
+
+        .results-message {
+            margin-bottom: 20px;
+        }
+
+        .results-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .badge-novice {
+            background-color: var(--red-giant);
+            color: var(--star-white);
+        }
+
+        .badge-informed {
+            background-color: var(--supernova-yellow);
+            color: var(--galaxy-black);
+        }
+
+        .badge-expert {
+            background-color: #00C853; /* Green for success */
+            color: var(--star-white);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--galaxy-black);
+            border-top: 4px solid var(--deep-space-purple);
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--aurora-purple);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--star-white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--aurora-purple);
+        }
+        .nav-links a.active {
+            color: var(--aurora-purple);
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--aurora-purple);
+        }
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--star-white);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter-btn {
+            background-color: var(--deep-space-purple);
+            color: var(--star-white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--deep-space-purple);
+        }
+
+        .social-icon i {
+            color: var(--star-white);
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--deep-space-purple);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 20px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .stat-item {
+                margin: 5px 10px;
+            }
+
+            .stat-value {
+                font-size: 1.4rem;
+            }
+
+            .quiz-container {
+                padding: 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 100ms;
+        }
+
+        .delay-2 {
+            animation-delay: 200ms;
+        }
+
+        .delay-3 {
+            animation-delay: 300ms;
+        }
+
+        /* Timeline Section Styles */
+        .timeline-section {
+            padding: 60px 0;
+            background: linear-gradient(180deg, var(--galaxy-black) 0%, rgba(13, 71, 161, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--star-white);
+            opacity: 0.8;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .timeline-nav-btn {
+            background-color: rgba(179, 136, 255, 0.2);
+            color: var(--star-white);
+            border: 1px solid var(--aurora-purple);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timeline-nav-btn:hover:not(:disabled) {
+            background-color: var(--aurora-purple);
+        }
+
+        .timeline-nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .timeline-year-display {
+            background-color: var(--deep-space-purple);
+            color: var(--star-white);
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 20px;
+            min-width: 120px;
+            text-align: center;
+            border: 2px solid var(--aurora-purple);
+            box-shadow: 0 0 15px rgba(179, 136, 255, 0.5);
+        }
+
+        .timeline-scroll-container {
+            position: relative;
+            height: 80px;
+            margin: 20px 0 40px;
+            overflow: hidden;
+        }
+
+        .timeline-track {
+            position: absolute;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-track::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--aurora-purple) 20%, 
+                var(--aurora-purple) 80%, 
+                transparent);
+            opacity: 0.4;
+        }
+
+        .timeline-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--galaxy-black);
+            border: 3px solid var(--cosmic-blue);
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1;
+        }
+
+        .timeline-point:hover, .timeline-point.active {
+            border-color: var(--aurora-purple);
+            box-shadow: 0 0 15px var(--aurora-purple);
+        }
+
+        .timeline-point.active {
+            width: 28px;
+            height: 28px;
+        }
+
+        .timeline-point::after {
+            content: attr(data-year);
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: var(--star-white);
+            opacity: 0.8;
+            white-space: nowrap;
+        }
+
+        .timeline-point::before {
+            content: attr(data-era);
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--aurora-purple);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            width: 100px;
+            text-align: center;
+        }
+
+        .timeline-point:hover::before, .timeline-point.active::before {
+            opacity: 1;
+        }
+
+        .timeline-content {
+            position: relative;
+            margin-top: 20px;
+            min-height: 400px;
+            perspective: 1000px;
+        }
+
+        .timeline-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--cosmic-blue);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateX(50px) rotateY(10deg);
+            transition: all 0.5s;
+            visibility: hidden;
+        }
+
+        .timeline-card.active {
+            opacity: 1;
+            transform: translateX(0) rotateY(0);
+            visibility: visible;
+            z-index: 1;
+        }
+
+        .timeline-card-header {
+            background-color: var(--deep-space-purple);
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--aurora-purple);
+        }
+
+        .timeline-era {
+            display: inline-block;
+            background-color: var(--aurora-purple);
+            color: var(--star-white);
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-card-header h3 {
+            color: var(--star-white);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .timeline-card-body {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .timeline-card-image {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(13, 71, 161, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--aurora-purple);
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(179, 136, 255, 0.2);
+        }
+
+        .timeline-card-info {
+            flex: 1;
+            min-width: 60%;
+        }
+
+        .timeline-card-info h4 {
+            margin-bottom: 10px;
+            color: var(--supernova-yellow);
+        }
+
+        .timeline-card-info ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-card-info li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .timeline-card-info li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--aurora-purple);
+            position: absolute;
+            left: -15px;
+            top: 9px;
+        }
+
+        .timeline-insight {
+            background-color: rgba(255, 214, 0, 0.1);
+            border-left: 3px solid var(--supernova-yellow);
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .timeline-insight i {
+            color: var(--supernova-yellow);
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-card-body {
+                flex-direction: column;
+            }
+
+            .timeline-card-image {
+                margin: 0 auto 20px;
+            }
+
+            .timeline-point::before {
+                display: none;
+            }
+
+            .timeline-scroll-container {
+                height: 60px;
+            }
+        }
+    </style>
+    <!-- For icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- For charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="home.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" fill="#090909" stroke="#B388FF" stroke-width="2"/>
+                        <path d="M20 10V30M10 20H30" stroke="#B388FF" stroke-width="2"/>
+                        <path d="M26 14L14 26M14 14L26 26" stroke="#FFD600" stroke-width="2"/>
+                    </svg>
+                    <h1>CryptoCaution</h1>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="library.html">Scam Library</a></li>
+                <li><a href="redflag.html">Tools</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2 class="fade-in">Stay Safe. Stay Smart. Stay CryptoCautious.</h2>
+            <p class="fade-in delay-1">Your shield against cryptocurrency scams in an evolving digital universe. Learn to identify, avoid, and report crypto threats before they impact you.</p>
+            <a href="education.html" class="cta-button fade-in delay-2">Learn How to Protect Yourself</a>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container stats-container">
+            <div class="stat-item fade-in">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <span class="stat-value" id="scams-today">213</span>
+                    <span class="stat-label">Scams Reported Today</span>
+                </div>
+            </div>
+            <div class="stat-item fade-in delay-1">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <span class="stat-value" id="total-losses">$182.5M</span>
+                    <span class="stat-label">Total Losses This Year</span>
+                </div>
+            </div>
+            <div class="stat-item fade-in delay-2">
+                <i class="fas fa-shield-alt"></i>
+                <div>
+                    <span class="stat-value" id="users-protected">8.2M</span>
+                    <span class="stat-label">Users Protected</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights">
+        <div class="container">
+            <h2 class="section-title">Stay One Step Ahead</h2>
+            <div class="highlights-grid">
+                <!-- Latest Scam Alerts -->
+                <div class="highlight-card fade-in">
+                    <div class="card-header">
+                        <i class="fas fa-bell"></i> Latest Scam Alerts
+                    </div>
+                    <div class="card-body">
+                        <div class="alert-item">
+                            <span class="alert-badge">CRITICAL</span>
+                            <div class="alert-content">
+                                <h4>HyperETH Mining Platform Scam</h4>
+                                <p>Fake mining platform promising 300% returns that steals wallet login credentials.</p>
+                            </div>
+                        </div>
+                        <div class="alert-item">
+                            <span class="alert-badge">HIGH</span>
+                            <div class="alert-content">
+                                <h4>BTC Recovery Services Fraud</h4>
+                                <p>Scammers posing as recovery specialists to steal more crypto from victims.</p>
+                            </div>
+                        </div>
+                        <div class="alert-item">
+                            <span class="alert-badge">MEDIUM</span>
+                            <div class="alert-content">
+                                <h4>Fake Lido Staking Clone</h4>
+                                <p>Clone website of popular staking service stealing user deposits.</p>
+                            </div>
+                        </div>
+                        <a href="#" class="view-all-link">View All Alerts <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Top 5 Protective Habits -->
+                <div class="highlight-card fade-in delay-1">
+                    <div class="card-header">
+                        <i class="fas fa-check-circle"></i> Top 5 Protective Habits
+                    </div>
+                    <div class="card-body">
+                        <div class="protective-habit">
+                            <div class="habit-check">1</div>
+                            <div class="habit-text">
+                                <h4>Use Hardware Wallets</h4>
+                                <p>Keep majority of crypto funds in cold storage for maximum security.</p>
+                            </div>
+                        </div>
+                        <div class="protective-habit">
+                            <div class="habit-check">2</div>
+                            <div class="habit-text">
+                                <h4>Verify URLs Carefully</h4>
+                                <p>Always check website addresses character by character.</p>
+                            </div>
+                        </div>
+                        <div class="protective-habit">
+                            <div class="habit-check">3</div>
+                            <div class="habit-text">
+                                <h4>Enable 2FA Authentication</h4>
+                                <p>Use app-based 2FA rather than SMS verification when possible.</p>
+                            </div>
+                        </div>
+                        <div class="protective-habit">
+                            <div class="habit-check">4</div>
+                            <div class="habit-text">
+                                <h4>Research Before Investing</h4>
+                                <p>Never invest based solely on influencer recommendations.</p>
+                            </div>
+                        </div>
+                        <div class="protective-habit">
+                            <div class="habit-check">5</div>
+                            <div class="habit-text">
+                                <h4>Be Skeptical of High Returns</h4>
+                                <p>Remember: if it sounds too good to be true, it likely is.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Most Targeted Cryptos -->
+                <div class="highlight-card fade-in delay-2">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie"></i> Most Targeted Cryptos This Month
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="targetedCryptoChart"></canvas>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #B388FF;"></div>
+                                <span>Bitcoin</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #0D47A1;"></div>
+                                <span>Ethereum</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #4A148C;"></div>
+                                <span>Solana</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #FFD600;"></div>
+                                <span>Other</span>
+                            </div>
+                        </div>
+                        <a href="#" class="view-all-link">View Full Report <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scammer Tactics Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Scammer Tactics Timeline</h2>
+            <p class="section-subtitle">Explore how crypto scams have evolved since Bitcoin's inception</p>
+            
+            <div class="timeline-container">
+                <div class="timeline-controls">
+                    <button class="timeline-nav-btn" id="timeline-prev" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="timeline-year-display">
+                        <span id="current-year">2009</span>
+                    </div>
+                    <button class="timeline-nav-btn" id="timeline-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="timeline-scroll-container">
+                    <div class="timeline-track">
+                        <!-- Timeline items will be dynamically inserted here -->
+                    </div>
+                </div>
+                
+                <div class="timeline-content">
+                    <div class="timeline-card active" data-year="2009">
+                        <div class="timeline-card-header">
+                            <span class="timeline-era">Early Bitcoin Era</span>
+                            <h3>2009-2011: The First Crypto Scams</h3>
+                        </div>
+                        <div class="timeline-card-body">
+                            <div class="timeline-card-image">
+                                <i class="fas fa-bitcoin-sign fa-4x"></i>
+                            </div>
+                            <div class="timeline-card-info">
+                                <h4>Predominant Tactics:</h4>
+                                <ul>
+                                    <li>Basic phishing emails claiming to be from "Satoshi Nakamoto"</li>
+                                    <li>Fake Bitcoin generators and miners</li>
+                                    <li>Simple Ponzi schemes promising Bitcoin returns</li>
+                                </ul>
+                                <p class="timeline-insight"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> Early crypto scams were relatively unsophisticated, targeting early adopters with technical backgrounds.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card" data-year="2012">
+                        <div class="timeline-card-header">
+                            <span class="timeline-era">Exchange Emergence</span>
+                            <h3>2012-2013: Exchange Vulnerabilities</h3>
+                        </div>
+                        <div class="timeline-card-body">
+                            <div class="timeline-card-image">
+                                <i class="fas fa-building-columns fa-4x"></i>
+                            </div>
+                            <div class="timeline-card-info">
+                                <h4>Predominant Tactics:</h4>
+                                <ul>
+                                    <li>Exchange hacks targeting weak security</li>
+                                    <li>Fake exchanges mimicking legitimate platforms</li>
+                                    <li>Wallet theft through malware</li>
+                                </ul>
+                                <p class="timeline-insight"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> As exchanges became popular, they became prime targets for sophisticated attacks.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card" data-year="2014">
+                        <div class="timeline-card-header">
+                            <span class="timeline-era">Altcoin Boom</span>
+                            <h3>2014-2016: The Rise of Altcoin Scams</h3>
+                        </div>
+                        <div class="timeline-card-body">
+                            <div class="timeline-card-image">
+                                <i class="fas fa-coins fa-4x"></i>
+                            </div>
+                            <div class="timeline-card-info">
+                                <h4>Predominant Tactics:</h4>
+                                <ul>
+                                    <li>Pump and dump schemes with new altcoins</li>
+                                    <li>Fake altcoin projects with copied whitepapers</li>
+                                    <li>Mining pool scams</li>
+                                </ul>
+                                <p class="timeline-insight"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> The proliferation of alternative cryptocurrencies created new opportunities for scammers to create worthless tokens.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card" data-year="2017">
+                        <div class="timeline-card-header">
+                            <span class="timeline-era">ICO Mania</span>
+                            <h3>2017-2018: ICO Fraud Explosion</h3>
+                        </div>
+                        <div class="timeline-card-body">
+                            <div class="timeline-card-image">
+                                <i class="fas fa-rocket fa-4x"></i>
+                            </div>
+                            <div class="timeline-card-info">
+                                <h4>Predominant Tactics:</h4>
+                                <ul>
+                                    <li>Fraudulent ICOs with false promises</li>
+                                    <li>Celebrity-endorsed scam projects</li>
+                                    <li>Exit scams after successful fundraising</li>
+                                </ul>
+                                <p class="timeline-insight"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> The ICO boom created a gold rush mentality, allowing scammers to raise millions before disappearing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card" data-year="2019">
+                        <div class="timeline-card-header">
+                            <span class="timeline-era">DeFi Genesis</span>
+                            <h3>2019-2020: Early DeFi Exploits</h3>
+                        </div>
+                        <div class="timeline-card-body">
+                            <div class="timeline-card-image">
+                                <i class="fas fa-code fa-4x"></i>
+                            </div>
+                            <div class="timeline-card-info">
+                                <h4>Predominant Tactics:</h4>
+                                <ul>
+                                    <li>Flash loan attacks on DeFi protocols</li>
+                                    <li>Rug pulls on decentralized exchanges</li>
+                                    <li>Smart contract vulnerabilities exploitation</li>
+                                </ul>
+                                <p class="timeline-insight"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> DeFi introduced complex attack vectors requiring technical expertise to execute but offering potentially larger payouts.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card" data-year="2021">
+                        <div class="timeline-card-header">
+                            <span class="timeline-era">NFT & Metaverse</span>
+                            <h3>2021-2022: NFT & Metaverse Scams</h3>
+                        </div>
+                        <div class="timeline-card-body">
+                            <div class="timeline-card-image">
+                                <i class="fas fa-image fa-4x"></i>
+                            </div>
+                            <div class="timeline-card-info">
+                                <h4>Predominant Tactics:</h4>
+                                <ul>
+                                    <li>Fake NFT marketplaces and collections</li>
+                                    <li>Discord hacks targeting NFT communities</li>
+                                    <li>Counterfeit NFTs and artificial price manipulation</li>
+                                </ul>
+                                <p class="timeline-insight"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> NFTs created new opportunities for scammers, targeting both creators and collectors with sophisticated social engineering.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card" data-year="2023">
+                        <div class="timeline-card-header">
+                            <span class="timeline-era">AI & Cross-Chain</span>
+                            <h3>2023-2024: AI-Enhanced Attacks</h3>
+                        </div>
+                        <div class="timeline-card-body">
+                            <div class="timeline-card-image">
+                                <i class="fas fa-robot fa-4x"></i>
+                            </div>
+                            <div class="timeline-card-info">
+                                <h4>Predominant Tactics:</h4>
+                                <ul>
+                                    <li>AI-generated deepfake videos for crypto scams</li>
+                                    <li>Cross-chain bridge exploits</li>
+                                    <li>Advanced phishing using LLM-powered social engineering</li>
+                                </ul>
+                                <p class="timeline-insight"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> AI tools have enabled scammers to create highly convincing fake content and target users across multiple blockchains.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card" data-year="2025">
+                        <div class="timeline-card-header">
+                            <span class="timeline-era">Future Threats</span>
+                            <h3>2025+: Next Generation Scams to Watch For</h3>
+                        </div>
+                        <div class="timeline-card-body">
+                            <div class="timeline-card-image">
+                                <i class="fas fa-binoculars fa-4x"></i>
+                            </div>
+                            <div class="timeline-card-info">
+                                <h4>Predicted Tactics:</h4>
+                                <ul>
+                                    <li>Quantum computing attacks on cryptographic protocols</li>
+                                    <li>Identity theft via compromised biometric wallets</li>
+                                    <li>Sophisticated "sleeper" smart contracts in legitimate projects</li>
+                                </ul>
+                                <p class="timeline-insight"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> Future scammers will likely exploit emerging technologies while developing increasingly patient, sophisticated approaches.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+        <div class="container">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h3>Are You Scam-Savvy?</h3>
+                    <p>Take this 5-question quiz to test your cryptocurrency scam awareness</p>
+                </div>
+                <div id="quiz-content">
+                    <!-- Question 1 -->
+                    <div class="quiz-question active" data-question="1">
+                        <div class="question-text">1. Someone offers you a 50% guaranteed return on your crypto investment within 30 days. What should you do?</div>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="true">
+                                <div class="option-marker"></div>
+                                <span>Assume it's a scam and avoid it altogether</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>Invest a small amount to test it first</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>Ask friends to join you in the investment</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>Research the person's social media following first</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="quiz-question" data-question="2">
+                        <div class="question-text">2. What is the safest way to store cryptocurrency for long-term holding?</div>
+                        <ul class="quiz-options">
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>On a popular exchange with a good reputation</span>
+                            </li>
+                            <li class="quiz-option" data-correct="true">
+                                <div class="option-marker"></div>
+                                <span>In a hardware wallet disconnected from the internet</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>In a software wallet on your computer</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>In a mobile wallet app on your smartphone</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Question 3 -->
+                    <div class="quiz-question" data-question="3">
+                        <div class="question-text">3. You receive an urgent email saying your crypto wallet has been compromised and you need to verify your seed phrase. What should you do?</div>
+                        <ul class="quiz-options">
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>Provide your seed phrase to secure your account</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>Click the link and follow the verification steps</span>
+                            </li>
+                            <li class="quiz-option" data-correct="true">
+                                <div class="option-marker"></div>
+                                <span>Ignore the email - legitimate services will never ask for your seed phrase</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>Reply to the email asking for more information</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Question 4 -->
+                    <div class="quiz-question" data-question="4">
+                        <div class="question-text">4. Which of these is NOT a common sign of a crypto scam?</div>
+                        <ul class="quiz-options">
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>Promises of guaranteed high returns</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>Pressure to act quickly before an "opportunity" disappears</span>
+                            </li>
+                            <li class="quiz-option" data-correct="true">
+                                <div class="option-marker"></div>
+                                <span>Detailed technical documentation and public team profiles</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>Requests to share your private keys or seed phrase</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Question 5 -->
+                    <div class="quiz-question" data-question="5">
+                        <div class="question-text">5. A new cryptocurrency project is offering early investors special bonuses. What's the most important thing to check first?</div>
+                        <ul class="quiz-options">
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>How many followers they have on social media</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>If your friends are also investing</span>
+                            </li>
+                            <li class="quiz-option">
+                                <div class="option-marker"></div>
+                                <span>If the project has celebrity endorsements</span>
+                            </li>
+                            <li class="quiz-option" data-correct="true">
+                                <div class="option-marker"></div>
+                                <span>The team's verifiable background and the project's technical whitepaper</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Quiz Controls -->
+                    <div class="quiz-controls">
+                        <button class="quiz-btn" id="prev-btn" disabled>Previous</button>
+                        <button class="quiz-btn" id="next-btn">Next</button>
+                    </div>
+
+                    <!-- Quiz Results (initially hidden) -->
+                    <div class="quiz-results">
+                        <div class="results-score">0/5</div>
+                        <div class="results-badge"></div>
+                        <div class="results-message"></div>
+                        <button class="cta-button" id="restart-quiz">Take Quiz Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Crypto Security Guide</a></li>
+                        <li><a href="#">Scam Recognition Tips</a></li>
+                        <li><a href="#">Recovery Resources</a></li>
+                        <li><a href="#">Verified Exchanges</a></li>
+                        <li><a href="#">Reporting Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Report a Scam</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest scam alerts and security tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CryptoCaution. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Live stats counter animation
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                let value = Math.floor(progress * (end - start) + start);
+                
+                // Format the values
+                if (id === 'scams-today') {
+                    obj.textContent = value.toString();
+                } else if (id === 'total-losses') {
+                    obj.textContent = '$' + (value / 10).toFixed(1) + 'M';
+                } else if (id === 'users-protected') {
+                    obj.textContent = (value / 10).toFixed(1) + 'M';
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Start the animations
+        function startStatAnimations() {
+            animateValue('scams-today', 0, 213, 2000);
+            animateValue('total-losses', 0, 1825, 2000);
+            animateValue('users-protected', 0, 82, 2000);
+        }
+
+        // Observe elements to trigger animations when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('stats-bar')) {
+                        startStatAnimations();
+                    }
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        observer.observe(document.querySelector('.stats-bar'));
+
+        // Targeted Cryptos Chart
+        const ctx = document.getElementById('targetedCryptoChart').getContext('2d');
+        const targetedCryptoChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Bitcoin', 'Ethereum', 'Solana', 'Other'],
+                datasets: [{
+                    data: [42, 28, 15, 15],
+                    backgroundColor: [
+                        '#B388FF', // Aurora Purple
+                        '#0D47A1', // Cosmic Blue
+                        '#4A148C', // Deep Space Purple
+                        '#FFD600'  // Supernova Yellow
+                    ],
+                    borderColor: '#090909',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#090909',
+                        titleColor: '#FFFFFF',
+                        bodyColor: '#FFFFFF',
+                        bodyFont: {
+                            size: 14
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw || 0;
+                                return `${label}: ${value}% of scams`;
+                            }
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+
+        // Quiz functionality
+        let quizContent, questions, prevBtn, nextBtn, quizResults, resultsScore, resultsBadge, resultsMessage, restartQuizBtn;
+        let currentQuestion = 1;
+        let quizAnswers = {};
+        let totalQuestions;
+
+        // Initialize quiz
+        function initQuiz() {
+            quizContent = document.getElementById('quiz-content');
+            if (!quizContent) return; // Safety check
+            
+            questions = quizContent.querySelectorAll('.quiz-question');
+            prevBtn = document.getElementById('prev-btn');
+            nextBtn = document.getElementById('next-btn');
+            quizResults = document.querySelector('.quiz-results');
+            resultsScore = document.querySelector('.results-score');
+            resultsBadge = document.querySelector('.results-badge');
+            resultsMessage = document.querySelector('.results-message');
+            restartQuizBtn = document.getElementById('restart-quiz');
+            
+            if (!questions.length || !prevBtn || !nextBtn) return; // Safety check
+            
+            totalQuestions = questions.length;
+            currentQuestion = 1; // Reset current question
+            quizAnswers = {}; // Reset answers
+            
+            showQuestion(currentQuestion);
+            updateQuizControls();
+            
+            // Add event listeners for quiz options
+            const allOptions = quizContent.querySelectorAll('.quiz-option');
+            allOptions.forEach(option => {
+                // Remove existing event listeners (to prevent duplicates)
+                option.replaceWith(option.cloneNode(true));
+            });
+            
+            // Add fresh event listeners to all options
+            quizContent.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionNum = parseInt(this.closest('.quiz-question').dataset.question);
+                    const isCorrect = this.hasAttribute('data-correct');
+                    
+                    // Remove selected class from other options in the same question
+                    const siblings = this.closest('.quiz-options').querySelectorAll('.quiz-option');
+                    siblings.forEach(sib => {
+                        sib.classList.remove('selected');
+                    });
+                    
+                    // Mark this option as selected
+                    this.classList.add('selected');
+                    
+                    // Make sure the option marker is updated
+                    const optionMarker = this.querySelector('.option-marker');
+                    if (optionMarker) {
+                        // Force update of the option marker to ensure it renders
+                        optionMarker.innerHTML = '';
+                    }
+                    
+                    // Store the answer
+                    quizAnswers[questionNum] = {
+                        selected: this.querySelector('span').textContent.trim(),
+                        correct: isCorrect
+                    };
+                    
+                    updateQuizControls();
+                });
+            });
+            
+            // Quiz navigation buttons
+            prevBtn.addEventListener('click', function() {
+                if (currentQuestion > 1) {
+                    currentQuestion--;
+                    showQuestion(currentQuestion);
+                    updateQuizControls();
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentQuestion < totalQuestions) {
+                    currentQuestion++;
+                    showQuestion(currentQuestion);
+                    updateQuizControls();
+                } else {
+                    showQuizResults();
+                }
+            });
+            
+            // Restart quiz button
+            restartQuizBtn.addEventListener('click', resetQuiz);
+        }
+
+        // Show a specific question
+        function showQuestion(questionNum) {
+            if (!questions) return;
+            
+            questions.forEach(q => {
+                q.classList.remove('active');
+                if (parseInt(q.dataset.question) === questionNum) {
+                    q.classList.add('active');
+                }
+            });
+        }
+
+        // Update quiz controls (buttons states)
+        function updateQuizControls() {
+            if (!prevBtn || !nextBtn) return;
+            
+            prevBtn.disabled = currentQuestion === 1;
+            
+            if (currentQuestion === totalQuestions) {
+                nextBtn.textContent = 'See Results';
+                
+                // Count how many questions have been answered
+                const answeredQuestions = Object.keys(quizAnswers).length;
+                
+                // Only enable the results button if all questions are answered
+                nextBtn.disabled = answeredQuestions < totalQuestions;
+            } else {
+                nextBtn.textContent = 'Next';
+                // Enable Next button as long as current question is answered
+                nextBtn.disabled = !quizAnswers[currentQuestion];
+            }
+            
+            // If the current question has an answer, select that option
+            if (quizAnswers[currentQuestion]) {
+                const selectedText = quizAnswers[currentQuestion].selected;
+                const currentQuestionElement = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+                
+                if (currentQuestionElement) {
+                    const currentQuestionOptions = currentQuestionElement.querySelectorAll('.quiz-option');
+                    
+                    currentQuestionOptions.forEach(option => {
+                        const optionText = option.querySelector('span').textContent.trim();
+                        if (optionText === selectedText) {
+                            option.classList.add('selected');
+                        } else {
+                            option.classList.remove('selected');
+                        }
+                    });
+                }
+            }
+        }
+
+        // Show quiz results
+        function showQuizResults() {
+            if (!quizResults || !resultsScore || !resultsBadge || !resultsMessage) return;
+            
+            // Calculate the score
+            let correctAnswers = 0;
+            Object.values(quizAnswers).forEach(answer => {
+                if (answer.correct) correctAnswers++;
+            });
+            
+            // Update results UI
+            resultsScore.textContent = `${correctAnswers}/${totalQuestions}`;
+            
+            // Set badge and message based on score
+            if (correctAnswers <= 2) {
+                resultsBadge.textContent = 'Crypto Novice';
+                resultsBadge.className = 'results-badge badge-novice';
+                resultsMessage.textContent = 'You might be at risk for common crypto scams. We recommend going through our basic security guide.';
+            } else if (correctAnswers <= 4) {
+                resultsBadge.textContent = 'Informed Investor';
+                resultsBadge.className = 'results-badge badge-informed';
+                resultsMessage.textContent = 'You have a good foundation but could benefit from learning about advanced security practices.';
+            } else {
+                resultsBadge.textContent = 'Security Expert';
+                resultsBadge.className = 'results-badge badge-expert';
+                resultsMessage.textContent = "Excellent! You're well-prepared to identify and avoid crypto scams.";
+            }
+            
+            // Hide questions, show results
+            questions.forEach(q => q.classList.remove('active'));
+            
+            const quizControls = document.querySelector('.quiz-controls');
+            if (quizControls) quizControls.style.display = 'none';
+            
+            quizResults.style.display = 'block';
+        }
+
+        // Reset the quiz
+        function resetQuiz() {
+            currentQuestion = 1;
+            quizAnswers = {};
+            
+            // Clear selected options
+            if (quizContent) {
+                quizContent.querySelectorAll('.quiz-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+            }
+            
+            // Hide results, show questions
+            if (quizResults) quizResults.style.display = 'none';
+            
+            const quizControls = document.querySelector('.quiz-controls');
+            if (quizControls) quizControls.style.display = 'flex';
+            
+            showQuestion(currentQuestion);
+            updateQuizControls();
+        }
+
+        // Make sure to remove any previous event listeners before adding new ones
+        function removeExistingListeners() {
+            const oldPrevBtn = document.getElementById('prev-btn');
+            const oldNextBtn = document.getElementById('next-btn');
+            const oldRestartBtn = document.getElementById('restart-quiz');
+            
+            if (oldPrevBtn) {
+                const newPrevBtn = oldPrevBtn.cloneNode(true);
+                oldPrevBtn.parentNode.replaceChild(newPrevBtn, oldPrevBtn);
+            }
+            
+            if (oldNextBtn) {
+                const newNextBtn = oldNextBtn.cloneNode(true);
+                oldNextBtn.parentNode.replaceChild(newNextBtn, oldNextBtn);
+            }
+            
+            if (oldRestartBtn) {
+                const newRestartBtn = oldRestartBtn.cloneNode(true);
+                oldRestartBtn.parentNode.replaceChild(newRestartBtn, oldRestartBtn);
+            }
+        }
+
+        // Initialize the quiz when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // First remove any existing event listeners to prevent duplicates
+            removeExistingListeners();
+            // Then initialize the quiz
+            initQuiz();
+            
+            // Initialize the timeline
+            initTimeline();
+        });
+        
+        // Timeline functionality
+        function initTimeline() {
+            const timelineTrack = document.querySelector('.timeline-track');
+            const timelineContent = document.querySelector('.timeline-content');
+            const prevBtn = document.getElementById('timeline-prev');
+            const nextBtn = document.getElementById('timeline-next');
+            const yearDisplay = document.getElementById('current-year');
+            
+            if (!timelineTrack || !timelineContent || !prevBtn || !nextBtn || !yearDisplay) return;
+            
+            // Timeline years and their corresponding era labels
+            const timelineData = [
+                { year: '2009', era: 'Early Bitcoin' },
+                { year: '2012', era: 'Exchanges' },
+                { year: '2014', era: 'Altcoins' },
+                { year: '2017', era: 'ICO Mania' },
+                { year: '2019', era: 'DeFi Genesis' },
+                { year: '2021', era: 'NFTs' },
+                { year: '2023', era: 'AI & Cross-Chain' },
+                { year: '2025', era: 'Future Threats' }
+            ];
+            
+            let currentIndex = 0;
+            
+            // Create timeline points
+            timelineData.forEach((data, index) => {
+                const point = document.createElement('div');
+                point.className = 'timeline-point';
+                point.setAttribute('data-year', data.year);
+                point.setAttribute('data-era', data.era);
+                
+                // Position the point along the track
+                const position = (index / (timelineData.length - 1)) * 100;
+                point.style.left = `${position}%`;
+                
+                if (index === 0) {
+                    point.classList.add('active');
+                }
+                
+                point.addEventListener('click', () => {
+                    setActiveYear(index);
+                });
+                
+                timelineTrack.appendChild(point);
+            });
+            
+            // Add timeline navigation events
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    setActiveYear(currentIndex - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < timelineData.length - 1) {
+                    setActiveYear(currentIndex + 1);
+                }
+            });
+            
+            // Set active year and update UI
+            function setActiveYear(index) {
+                if (index < 0 || index >= timelineData.length) return;
+                
+                // Update current index
+                currentIndex = index;
+                
+                // Update year display
+                yearDisplay.textContent = timelineData[index].year;
+                
+                // Update timeline points
+                const points = timelineTrack.querySelectorAll('.timeline-point');
+                points.forEach((point, i) => {
+                    if (i === index) {
+                        point.classList.add('active');
+                    } else {
+                        point.classList.remove('active');
+                    }
+                });
+                
+                // Update timeline cards
+                const cards = timelineContent.querySelectorAll('.timeline-card');
+                cards.forEach(card => {
+                    if (card.getAttribute('data-year') === timelineData[index].year) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+                
+                // Update navigation buttons
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === timelineData.length - 1;
+                
+                // Scroll the point into view on mobile
+                if (window.innerWidth < 768) {
+                    points[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    if (currentIndex > 0) {
+                        setActiveYear(currentIndex - 1);
+                    }
+                } else if (e.key === 'ArrowRight') {
+                    if (currentIndex < timelineData.length - 1) {
+                        setActiveYear(currentIndex + 1);
+                    }
+                }
+            });
+            
+            // Initialize with first year
+            setActiveYear(0);
+        }
+    </script>
+</body>
+</html>

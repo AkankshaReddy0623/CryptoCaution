@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Caution - Red Flag Detector</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --deep-space-purple: #4A148C;
+            --cosmic-blue: #0D47A1;
+            --aurora-purple: #B388FF;
+            --galaxy-black: #090909;
+            --star-white: #FFFFFF;
+            --supernova-yellow: #FFD600;
+            --red-giant: #D50000;
+            --success-green: #00C853;
+            --warning-orange: #FF6D00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--galaxy-black);
+            color: var(--star-white);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--deep-space-purple);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--star-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: var(--star-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--aurora-purple);
+        }
+
+        .nav-links a.active {
+            color: var(--aurora-purple);
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--aurora-purple);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--star-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 60px 0 40px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.3), rgba(13, 71, 161, 0.3));
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(179, 136, 255, 0.1) 0%, rgba(9, 9, 9, 0) 50%),
+                radial-gradient(circle at 80% 70%, rgba(13, 71, 161, 0.1) 0%, rgba(9, 9, 9, 0) 50%);
+            z-index: -1;
+        }
+
+        .page-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--star-white);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Red Flag Detector */
+        .detector-section {
+            padding: 60px 0;
+        }
+
+        .detector-container {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--deep-space-purple);
+        }
+
+        .detector-intro {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(102, 252, 241, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #66fcf1;
+        }
+
+        .detector-intro h2 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .detector-intro p {
+            margin-bottom: 0;
+            color: #b3b3b3;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        /* Cryptocurrency & Timeframe Selection */
+        .crypto-selection-container {
+            margin-bottom: 25px;
+            position: relative;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #66fcf1;
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(102, 252, 241, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .crypto-selection-container label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .crypto-select {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            background: #1a2b47;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.1rem;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 15px) center;
+            padding-right: 35px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .crypto-select:hover,
+        .crypto-select:focus {
+            border-color: #66fcf1;
+            box-shadow: 0 0 0 3px rgba(102, 252, 241, 0.3);
+            outline: none;
+        }
+        
+        .crypto-select option,
+        .time-duration-select option {
+            background-color: #1a2b47;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        /* Question Styles */
+        .question-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0d1c33; /* Very dark blue background */
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 10%;
+            background: linear-gradient(90deg, #3CAEA3 0%, #66fcf1 100%);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
+        .detector-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .control-button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            background: #1a2b47;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .control-button:hover:not([disabled]) {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .control-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .control-button i {
+            margin-left: 8px;
+        }
+        
+        #prev-btn i {
+            margin-left: 0;
+            margin-right: 8px;
+        }
+        
+        .red-flag-indicator {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(220, 53, 69, 0.15);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            color: #ffffff;
+        }
+        
+        .red-flag-indicator.visible {
+            display: flex;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .red-flag-icon {
+            color: #ff4d6d;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .red-flag-content {
+            flex: 1;
+        }
+        
+        .red-flag-content h4 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #ff8fa3;
+        }
+
+        .question-card {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            padding: 20px;
+            background: #1a2b47; /* Darker blue background */
+            color: #ffffff; /* White text */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .question-card.active {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .question-number {
+            color: #66fcf1; /* Bright cyan for question numbers */
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #ffffff; /* White for question text */
+        }
+
+        .question-hint {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: #b3b3b3; /* Light gray for hints */
+            font-style: italic;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-button {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #ffffff; /* White text for options */
+            text-align: left;
+        }
+
+        .option-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .option-button.selected {
+            background-color: rgba(102, 252, 241, 0.15); /* Light cyan background when selected */
+            border-color: #66fcf1; /* Cyan border when selected */
+            color: #ffffff;
+        }
+
+        .option-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            margin-right: 15px;
+            color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .option-button.selected .option-icon {
+            background: #66fcf1; /* Cyan background for selected option icon */
+            color: #1a2b47; /* Dark blue text for contrast */
+        }
+        
+        .option-button:hover .option-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .option-icon i {
+            color: var(--aurora-purple);
+            font-size: 0.9rem;
+        }
+
+        /* Results Styles */
+        .results-container {
+            display: none;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .results-container.visible {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .results-score-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .results-meter {
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, var(--success-green), var(--supernova-yellow), var(--red-giant));
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .results-marker {
+            position: absolute;
+            top: -10px;
+            width: 20px;
+            height: 30px;
+            transform: translateX(-50%);
+            transition: left 1s ease-out;
+        }
+
+        .results-marker i {
+            color: var(--star-white);
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .results-score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--aurora-purple);
+            margin-bottom: 10px;
+        }
+
+        .results-rating {
+            display: inline-block;
+            padding: 8px 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-bottom: 20px;
+        }
+
+        .rating-safe {
+            background-color: var(--success-green);
+            color: var(--star-white);
+        }
+
+        .rating-caution {
+            background-color: var(--supernova-yellow);
+            color: var(--galaxy-black);
+        }
+
+        .rating-warning {
+            background-color: var(--warning-orange);
+            color: var(--star-white);
+        }
+
+        .rating-danger {
+            background-color: var(--red-giant);
+            color: var(--star-white);
+        }
+
+        .results-summary {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .results-flags {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .results-flags h4 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .flag-list {
+            list-style: none;
+        }
+
+        .flag-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .flag-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .flag-icon {
+            color: var(--red-giant);
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+
+        .flag-content {
+            flex: 1;
+        }
+
+        .results-recommendations {
+            background: rgba(13, 71, 161, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--cosmic-blue);
+        }
+
+        .results-recommendations h4 {
+            margin-bottom: 15px;
+            color: var(--star-white);
+        }
+
+        .recommendation-list {
+            list-style: none;
+        }
+
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .recommendation-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .recommendation-icon {
+            color: var(--cosmic-blue);
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .primary-action {
+            background-color: var(--aurora-purple);
+            color: var(--star-white);
+            box-shadow: 0 4px 15px rgba(179, 136, 255, 0.4);
+        }
+
+        .primary-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(179, 136, 255, 0.6);
+        }
+
+        .secondary-action {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--star-white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .secondary-action:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Related Resources Section */
+        .related-resources {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--aurora-purple);
+            margin: 15px auto 0;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .resource-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .resource-card-header {
+            background-color: var(--deep-space-purple);
+            color: var(--star-white);
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .resource-card-body {
+            padding: 20px;
+        }
+
+        .resource-card-body p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--aurora-purple);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .resource-link:hover {
+            color: var(--star-white);
+        }
+
+        .resource-link i {
+            margin-left: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--galaxy-black);
+            border-top: 4px solid var(--deep-space-purple);
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--aurora-purple);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--star-white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--aurora-purple);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--star-white);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter-btn {
+            background-color: var(--deep-space-purple);
+            color: var(--star-white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--deep-space-purple);
+        }
+
+        .social-icon i {
+            color: var(--star-white);
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--deep-space-purple);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 20px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .detector-container {
+                padding: 20px;
+            }
+
+            .results-actions {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+            }
+        }
+
+        /* Add style for action-button class */
+        .action-button {
+            background-color: var(--aurora-purple);
+            color: var(--star-white);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(179, 136, 255, 0.4);
+        }
+
+        .action-button:hover {
+            background-color: #9a5cf7;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(179, 136, 255, 0.6);
+        }
+
+        /* Add style for results-section */
+        .results-section {
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .disclaimer {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        /* Timeframe Analysis Styles */
+        .timeframe-badge {
+            display: inline-block;
+            background-color: var(--cosmic-blue);
+            color: var(--star-white);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .timeframe-analysis {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .timeframe-analysis h3 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .timeframe-content p {
+            margin-bottom: 20px;
+        }
+        
+        .green-flags, .red-flags {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .green-flags {
+            background: rgba(0, 200, 83, 0.1);
+            border-left: 4px solid var(--success-green);
+        }
+        
+        .red-flags {
+            background: rgba(213, 0, 0, 0.1);
+            border-left: 4px solid var(--red-giant);
+        }
+        
+        .green-flags h4, .red-flags h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .green-flags ul, .red-flags ul {
+            list-style: none;
+        }
+        
+        .green-flags li, .red-flags li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .green-flags li i, .red-flags li i {
+            margin-right: 10px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        .green-flags li i {
+            color: var(--success-green);
+        }
+        
+        .red-flags li i {
+            color: var(--red-giant);
+        }
+        
+        /* Sentiment Analysis Styles */
+        .sentiment-container {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            color: var(--star-white);
+        }
+        
+        .sentiment-score {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 8px;
+            flex-direction: column;
+            color: var(--star-white);
+        }
+        
+        .positive-sentiment {
+            background-color: rgba(76, 175, 80, 0.2);
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .neutral-sentiment {
+            background-color: rgba(255, 193, 7, 0.2);
+            border-left: 5px solid #FFC107;
+        }
+        
+        .negative-sentiment {
+            background-color: rgba(244, 67, 54, 0.2);
+            border-left: 5px solid #F44336;
+        }
+        
+        .score-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--star-white);
+        }
+        
+        .score-label {
+            font-size: 16px;
+            margin-top: 5px;
+            color: var(--star-white);
+        }
+        
+        .sentiment-details {
+            margin-top: 15px;
+            color: var(--star-white);
+        }
+        
+        .sentiment-details p {
+            color: var(--star-white);
+        }
+        
+        .trending-keywords {
+            margin-top: 10px;
+        }
+        
+        .trending-keywords h4 {
+            color: var(--star-white);
+        }
+        
+        .keyword-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .keyword-pill {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 14px;
+            color: var(--star-white);
+        }
+        
+        /* Time Duration Container Styles */
+        .time-duration-container {
+            margin-bottom: 25px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #ffc107; /* Yellow border */
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(255, 193, 7, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .time-duration-container label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .time-duration-select {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            background: #1a2b47;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.1rem;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 15px) center;
+            padding-right: 35px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .time-duration-select:hover,
+        .time-duration-select:focus {
+            border-color: #ffc107;
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
+            outline: none;
+        }
+        
+        .time-duration-select option,
+        .crypto-select option {
+            background-color: #1a2b47;
+            color: #ffffff;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="home.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                <svg width="40" height="40" viewBox="0 0 40 40">
+                    <circle cx="20" cy="20" r="18" fill="#090909" stroke="#B388FF" stroke-width="2"/>
+                    <path d="M20 10V30M10 20H30" stroke="#B388FF" stroke-width="2"/>
+                    <path d="M26 14L14 26M14 14L26 26" stroke="#FFD600" stroke-width="2"/>
+                </svg>
+                <h1>CryptoCaution</h1>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="library.html">Scam Library</a></li>
+                <li><a href="redflag.html" class="active">Tools</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h2>Crypto Red Flag Detector</h2>
+            <p>Evaluate any crypto investment opportunity for potential scam indicators with our interactive tool</p>
+        </div>
+    </section>
+
+    <!-- Red Flag Detector Section -->
+    <section class="detector-section">
+        <div class="container">
+            <div class="detector-container">
+                <div class="detector-intro">
+                    <h2>Cryptocurrency Red Flag Detector</h2>
+                    <p>Evaluate the risk level of your cryptocurrency investment by answering a few simple questions.</p>
+                    <p><strong>Step 1:</strong> Select a cryptocurrency below to begin the assessment.</p>
+                </div>
+                
+                <!-- Cryptocurrency Selection -->
+                <div class="crypto-selection-container">
+                    <label for="crypto-select">Select Cryptocurrency:</label>
+                    <select id="crypto-select" class="crypto-select" onchange="handleCryptoChange(this)">
+                        <option value="">-- Select a cryptocurrency --</option>
+                        <option value="bitcoin">Bitcoin (BTC)</option>
+                        <option value="ethereum">Ethereum (ETH)</option>
+                        <option value="ripple">XRP (Ripple)</option>
+                        <option value="cardano">Cardano (ADA)</option>
+                        <option value="solana">Solana (SOL)</option>
+                        <option value="polkadot">Polkadot (DOT)</option>
+                        <option value="avalanche">Avalanche (AVAX)</option>
+                        <option value="dogecoin">Dogecoin (DOGE)</option>
+                        <option value="shiba">Shiba Inu (SHIB)</option>
+                        <option value="litecoin">Litecoin (LTC)</option>
+                        <option value="polygon">Polygon (MATIC)</option>
+                        <option value="other">Other cryptocurrency</option>
+                    </select>
+                </div>
+                
+                <!-- Time Duration Selection (will be shown after crypto selection) -->
+                <div class="time-duration-container" style="display: none;">
+                    <label for="time-duration">Select Investment Timeframe:</label>
+                    <select id="time-duration" class="time-duration-select" onchange="handleTimeframeChange(this)">
+                        <option value="">-- Select timeframe --</option>
+                        <option value="intraday">Intraday Trading (Hours/Same day)</option>
+                        <option value="shortterm">Short-term (Days to Weeks)</option>
+                        <option value="midterm">Medium-term (Weeks to Months)</option>
+                        <option value="longterm">Long-term (Months to Years)</option>
+                    </select>
+                </div>
+                
+                <!-- Question Container -->
+                <div class="question-container" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    
+                    <!-- Question 1 -->
+                    <div class="question-card active" data-question="1">
+                        <div class="question-number">Question 1 of 10</div>
+                        <div class="question-text">Does the investment promise guaranteed returns or profits?</div>
+                        <div class="question-hint">Consider if they advertise specific percentage returns with certainty</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="guaranteed-returns">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Yes, they guarantee specific high returns (e.g., 100%+ yearly)</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="guaranteed-returns-moderate">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Yes, they guarantee moderate returns (e.g., 10-50% yearly)</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>They suggest likely returns but include risk disclaimers</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>No guarantees are made and risks are clearly explained</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Red Flag Alert (conditionally shown) -->
+                        <div class="red-flag-indicator" id="flag-guaranteed-returns">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: Guaranteed Returns</h4>
+                                <p>No legitimate investment can guarantee profits, especially high returns. All investments carry risk, and guarantees of specific returns are a hallmark of scams and Ponzi schemes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-guaranteed-returns-moderate">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Return Guarantees</h4>
+                                <p>Even moderate guaranteed returns should be viewed with suspicion. Legitimate investments acknowledge market risks and avoid making promises about specific returns.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="question-card" data-question="2">
+                        <div class="question-number">Question 2 of 10</div>
+                        <div class="question-text">Is there a sense of urgency or limited time to invest?</div>
+                        <div class="question-hint">Are they pressuring you to act quickly to avoid missing out?</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="extreme-urgency">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Extreme urgency ("Only 24 hours left!" or "Act now before it's gone!")</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="moderate-urgency">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Moderate urgency ("Limited slots available" or "Prices rising soon")</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Mild suggestion of timeliness but no hard deadline</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>No urgency or artificial time pressure</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Red Flag Alert -->
+                        <div class="red-flag-indicator" id="flag-extreme-urgency">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: Extreme Urgency</h4>
+                                <p>Creating artificial time pressure is a classic manipulation tactic used by scammers to prevent you from researching properly or consulting with others. Legitimate investments don't disappear overnight.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-moderate-urgency">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Time Pressure</h4>
+                                <p>While some legitimate offerings may have limited availability, excessive emphasis on scarcity or impending price changes is often used to rush decisions and bypass careful evaluation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 3 -->
+                    <div class="question-card" data-question="3">
+                        <div class="question-number">Question 3 of 10</div>
+                        <div class="question-text">Is there a clear explanation of how the investment generates returns?</div>
+                        <div class="question-hint">Can you understand the business model or technology behind it?</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="no-transparency">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>No explanation at all or extremely vague references to "algorithms" or "AI"</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="limited-transparency">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Some explanation but crucial details are missing or unclear</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Mostly clear explanation with some technical aspects simplified</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Completely transparent with detailed documentation available</span>
+                            </button>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-no-transparency">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: Lack of Transparency</h4>
+                                <p>When an investment can't clearly explain how it generates returns, it's often because there is no legitimate mechanism. Vague references to proprietary algorithms or advanced technology without specifics are common in scams.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-limited-transparency">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Insufficient Information</h4>
+                                <p>Partial explanations that leave out critical details about how money is actually made should raise concerns. Legitimate projects can explain their value proposition clearly, even if some technical aspects are complex.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 4 -->
+                    <div class="question-card" data-question="4">
+                        <div class="question-number">Question 4 of 10</div>
+                        <div class="question-text">Who is promoting this investment opportunity?</div>
+                        <div class="question-hint">Consider the credibility of the individuals or organization behind it</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="anonymous-team">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Anonymous team or fake/stolen identities</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="influencer-promotion">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Mainly promoted by paid influencers or celebrities</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Team with limited experience but verifiable identities</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Well-established team with proven track record</span>
+                            </button>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-anonymous-team">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: Anonymous or Fake Team</h4>
+                                <p>Legitimate projects have real team members who are publicly identifiable and accountable. Anonymous teams or stolen identities are extremely common in crypto scams.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-influencer-promotion">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Paid Promotions</h4>
+                                <p>Heavy reliance on celebrity endorsements or influencer marketing without substantial discussion of the technology or business model is concerning. Many influencers are paid for promotion without proper disclosure.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Question 5 -->
+                    <div class="question-card" data-question="5">
+                        <div class="question-number">Question 5 of 10</div>
+                        <div class="question-text">Does the project have a clear, detailed whitepaper or documentation?</div>
+                        <div class="question-hint">Look for technical documentation that explains how the project works</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="no-documentation">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>No whitepaper or very minimal documentation</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="poor-documentation">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Documentation exists but contains errors, plagiarism, or vague claims</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Decent documentation with some technical details</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Comprehensive documentation with clear technical specifications</span>
+                            </button>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-no-documentation">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: Lack of Documentation</h4>
+                                <p>Legitimate crypto projects provide detailed technical documentation. Absence of a whitepaper or minimal information suggests there may be no real technology behind the project.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-poor-documentation">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Problematic Documentation</h4>
+                                <p>Low-quality documentation with errors, plagiarized content, or grand claims without technical substance is a warning sign of an unprofessional or fraudulent project.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Question 6 -->
+                    <div class="question-card" data-question="6">
+                        <div class="question-number">Question 6 of 10</div>
+                        <div class="question-text">Has the project's code been audited by reputable security firms?</div>
+                        <div class="question-hint">Security audits help identify vulnerabilities and validate functionality</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="no-audit">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>No audits and closed-source code</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="questionable-audit">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Claims of audits from unknown firms or no verification provided</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Basic audit from known firm or open-source but unaudited</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Multiple audits from reputable firms with public reports</span>
+                            </button>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-no-audit">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: No Code Audits</h4>
+                                <p>Without security audits and publicly viewable code, there's no way to verify the project functions as claimed or is free from vulnerabilities that could lead to loss of funds.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-questionable-audit">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Questionable Audits</h4>
+                                <p>Vague claims about audits without verifiable reports or audits from unknown firms provide little assurance. Legitimate projects provide transparent audit documentation.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Question 7 -->
+                    <div class="question-card" data-question="7">
+                        <div class="question-number">Question 7 of 10</div>
+                        <div class="question-text">What is the token distribution structure?</div>
+                        <div class="question-hint">Consider how tokens are allocated among team, investors, and users</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="centralized-tokens">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Majority of tokens held by founders/team with no lockup period</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="unclear-distribution">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Unclear or complicated token distribution structure</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Clear distribution with moderate team allocation and vesting</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Fair distribution with transparent vesting schedules for all parties</span>
+                            </button>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-centralized-tokens">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: Centralized Token Ownership</h4>
+                                <p>When a large percentage of tokens is controlled by founders with no lockup period, there's high risk of a "rug pull" where insiders sell their holdings all at once, crashing the price.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-unclear-distribution">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Unclear Token Distribution</h4>
+                                <p>Lack of transparency about token allocation or overly complex distribution schemes often hide inequitable arrangements that benefit insiders at the expense of regular investors.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Question 8 -->
+                    <div class="question-card" data-question="8">
+                        <div class="question-number">Question 8 of 10</div>
+                        <div class="question-text">How is the investment opportunity being marketed?</div>
+                        <div class="question-hint">Consider the marketing tactics and messaging used</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="deceptive-marketing">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Heavy emphasis on getting rich quick with little mention of technology</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="misleading-comparisons">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Misleading comparisons to Bitcoin/Ethereum or exaggerated claims</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Some promotional language but mostly focused on project features</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Educational approach that emphasizes technology and use cases</span>
+                            </button>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-deceptive-marketing">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: Get-Rich-Quick Marketing</h4>
+                                <p>Marketing that focuses primarily on wealth generation rather than technological innovation or real-world utility is characteristic of scams that prey on FOMO (fear of missing out).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-misleading-comparisons">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Misleading Comparisons</h4>
+                                <p>Claims like "the next Bitcoin" or unrealistic projections based on past crypto success stories are misleading marketing tactics designed to create unrealistic expectations.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Question 9 -->
+                    <div class="question-card" data-question="9">
+                        <div class="question-number">Question 9 of 10</div>
+                        <div class="question-text">Is there a functioning product or just a concept?</div>
+                        <div class="question-hint">Check if there's a working prototype or only promises</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="no-product">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>No product, only concept/plans with no clear timeline</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="delayed-product">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Repeatedly delayed product or minimal viable product</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Basic working product with ongoing development</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Fully functional product with active users</span>
+                            </button>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-no-product">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: No Working Product</h4>
+                                <p>Projects collecting investment without any working product or clear development milestones carry significant risk. Ideas are common, but execution is what creates value.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-delayed-product">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Consistently Delayed Development</h4>
+                                <p>Repeated delays or a minimal product that doesn't match promised functionality suggests potential development issues or misleading claims about capabilities.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Question 10 -->
+                    <div class="question-card" data-question="10">
+                        <div class="question-number">Question 10 of 10</div>
+                        <div class="question-text">Can you withdraw your investment easily if needed?</div>
+                        <div class="question-hint">Consider any lockup periods or withdrawal restrictions</div>
+                        <div class="options-container">
+                            <button class="option-button" data-value="3" data-flag="locked-funds">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Extremely difficult or impossible to withdraw with many restrictions</span>
+                            </button>
+                            <button class="option-button" data-value="2" data-flag="withdrawal-fees">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>High fees or long wait times for withdrawals</span>
+                            </button>
+                            <button class="option-button" data-value="1" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Reasonable lockup period with clear withdrawal terms</span>
+                            </button>
+                            <button class="option-button" data-value="0" data-flag="">
+                                <div class="option-icon"><i class="fas fa-circle"></i></div>
+                                <span>Full liquidity with minimal or no withdrawal restrictions</span>
+                            </button>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-locked-funds">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Major Red Flag: Trapped Investments</h4>
+                                <p>When a project makes it extremely difficult to withdraw funds, this is often a sign of a Ponzi scheme or exit scam. Legitimate investments allow reasonable liquidity.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="red-flag-indicator" id="flag-withdrawal-fees">
+                            <div class="red-flag-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="red-flag-content">
+                                <h4>Red Flag: Excessive Withdrawal Barriers</h4>
+                                <p>High fees or unreasonable waiting periods for withdrawals can be used to discourage investors from taking out their money, often to maintain artificial price stability or delay a collapse.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Navigation Controls -->
+                    <div class="detector-controls">
+                        <button id="prev-btn" class="control-button" disabled>
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button id="next-btn" class="control-button" disabled>
+                            Next Question <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Fixed JavaScript -->
+                <script>
+                // Update first question with context
+                function updateFirstQuestionSimple(crypto, timeframe) {
+                    const cryptoNames = {
+                        'bitcoin': 'Bitcoin',
+                        'ethereum': 'Ethereum',
+                        'ripple': 'XRP (Ripple)',
+                        'cardano': 'Cardano',
+                        'solana': 'Solana',
+                        'polkadot': 'Polkadot',
+                        'avalanche': 'Avalanche',
+                        'dogecoin': 'Dogecoin',
+                        'shiba': 'Shiba Inu',
+                        'litecoin': 'Litecoin',
+                        'polygon': 'Polygon',
+                        'other': 'this cryptocurrency'
+                    };
+                    
+                    const timeframeText = {
+                        'intraday': 'intraday trading (same day)',
+                        'shortterm': 'short-term trading (days to weeks)',
+                        'midterm': 'medium-term investment (weeks to months)',
+                        'longterm': 'long-term investment (months to years)'
+                    };
+                    
+                    const cryptoName = cryptoNames[crypto] || 'this cryptocurrency';
+                    const timeframeDesc = timeframeText[timeframe] || 'investment';
+                    
+                    const firstQuestionText = document.querySelector('.question-card[data-question="1"] .question-text');
+                    if (firstQuestionText) {
+                        firstQuestionText.textContent = `Are you considering ${cryptoName} for ${timeframeDesc}?`;
+                    }
+                }
+                
+                // Simple direct handler for crypto change
+                function handleCryptoChange(select) {
+                    console.log("Crypto selected:", select.value);
+                    
+                    // Get the timeframe container
+                    const timeDurationContainer = document.querySelector('.time-duration-container');
+                    
+                    // Reset timeframe selection
+                    const timeDurationSelect = document.getElementById('time-duration');
+                    timeDurationSelect.value = '';
+                    
+                    // Hide question container
+                    document.querySelector('.question-container').style.display = 'none';
+                    
+                    if (select.value) {
+                        // Show timeframe immediately
+                        timeDurationContainer.style.display = 'block';
+                        
+                        // Update intro text with selected crypto
+                        updateIntroText(select.value);
+                            } else {
+                        // Hide timeframe container if no crypto selected
+                        timeDurationContainer.style.display = 'none';
+                    }
+                }
+                
+                // Simple intro text update
+                function updateIntroTextSimple(crypto) {
+                    const cryptoNames = {
+                        'bitcoin': 'Bitcoin',
+                        'ethereum': 'Ethereum',
+                        'ripple': 'XRP (Ripple)',
+                        'cardano': 'Cardano',
+                        'solana': 'Solana',
+                        'polkadot': 'Polkadot',
+                        'avalanche': 'Avalanche',
+                        'dogecoin': 'Dogecoin',
+                        'shiba': 'Shiba Inu',
+                        'litecoin': 'Litecoin',
+                        'polygon': 'Polygon',
+                        'other': 'this cryptocurrency'
+                    };
+                    
+                    const cryptoName = cryptoNames[crypto] || 'this cryptocurrency';
+                    const introText = document.querySelector('.detector-intro p:nth-child(2)');
+                    introText.textContent = `Evaluate the risk level of your ${cryptoName} investment by answering a few simple questions.`;
+                }
+                
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Get DOM elements
+                    const questions = document.querySelectorAll('.question-card');
+                    const progressBar = document.querySelector('.progress-fill');
+                    const nextBtn = document.getElementById('next-btn');
+                    const prevBtn = document.getElementById('prev-btn');
+                    const cryptoSelect = document.getElementById('crypto-select');
+                    const timeDurationContainer = document.querySelector('.time-duration-container');
+                    const timeDurationSelect = document.getElementById('time-duration');
+                    
+                    // Sentiment analysis function
+                    function analyzeSentiment(cryptoName) {
+                        // Mock sentiment data for different cryptocurrencies
+                        const sentimentData = {
+                            'bitcoin': {
+                                score: 0.65,
+                                sources: 145,
+                                trend: 'positive',
+                                keywords: ['adoption', 'institutional', 'ETF', 'regulation']
+                            },
+                            'ethereum': {
+                                score: 0.72,
+                                sources: 120,
+                                trend: 'positive',
+                                keywords: ['ETH2.0', 'scaling', 'DeFi', 'NFT']
+                            },
+                            'dogecoin': {
+                                score: 0.40,
+                                sources: 95,
+                                trend: 'neutral',
+                                keywords: ['meme', 'volatile', 'celebrity', 'speculation']
+                            },
+                            'tether': {
+                                score: 0.30,
+                                sources: 78,
+                                trend: 'neutral',
+                                keywords: ['stablecoin', 'reserves', 'regulation', 'audit']
+                            },
+                            'solana': {
+                                score: 0.68,
+                                sources: 85,
+                                trend: 'positive',
+                                keywords: ['speed', 'adoption', 'ecosystem', 'growth']
+                            },
+                            'xrp': {
+                                score: 0.45,
+                                sources: 110,
+                                trend: 'neutral',
+                                keywords: ['SEC', 'lawsuit', 'regulation', 'remittance']
+                            },
+                            'cardano': {
+                                score: 0.62,
+                                sources: 90,
+                                trend: 'positive',
+                                keywords: ['development', 'research', 'hydra', 'Africa']
+                            },
+                            'shiba-inu': {
+                                score: 0.38,
+                                sources: 75,
+                                trend: 'negative',
+                                keywords: ['meme', 'volatile', 'speculative', 'dump']
+                            }
+                        };
+                        
+                        // Default sentiment if crypto not found
+                        const defaultSentiment = {
+                            score: 0.5,
+                            sources: 50,
+                            trend: 'neutral',
+                            keywords: ['crypto', 'blockchain', 'digital asset', 'investment']
+                        };
+                        
+                        // Convert crypto name to lowercase and handle spaces/dashes
+                        const normalizedName = cryptoName.toLowerCase().replace(/ /g, '-');
+                        
+                        // Get sentiment data or default
+                        const sentiment = sentimentData[normalizedName] || defaultSentiment;
+                        
+                        return sentiment;
+                    }
+                    
+                    // Function to display sentiment analysis in the results
+                    function displaySentimentAnalysis(cryptoName) {
+                        const sentiment = analyzeSentiment(cryptoName);
+                        const resultsContainer = document.querySelector('.results-container');
+                        
+                        // Create sentiment display element if it doesn't exist
+                        let sentimentDisplay = document.getElementById('sentiment-analysis');
+                        if (!sentimentDisplay) {
+                            sentimentDisplay = document.createElement('div');
+                            sentimentDisplay.id = 'sentiment-analysis';
+                            sentimentDisplay.className = 'sentiment-container';
+                            resultsContainer.appendChild(sentimentDisplay);
+                        }
+                        
+                        // Determine sentiment class for styling
+                        let sentimentClass = '';
+                        let sentimentText = '';
+                        
+                        if (sentiment.score >= 0.65) {
+                            sentimentClass = 'positive-sentiment';
+                            sentimentText = 'Mostly Positive';
+                        } else if (sentiment.score >= 0.45) {
+                            sentimentClass = 'neutral-sentiment';
+                            sentimentText = 'Neutral';
+                            } else {
+                            sentimentClass = 'negative-sentiment';
+                            sentimentText = 'Mostly Negative';
+                        }
+                        
+                        // Format the display content
+                        const keywordsHtml = sentiment.keywords.map(word => `<span class="keyword-pill">${word}</span>`).join('');
+                        
+                        // Display immediately - no loading state or setTimeout
+                        sentimentDisplay.innerHTML = `
+                            <h3>Market Sentiment Analysis: ${cryptoName}</h3>
+                            <div class="sentiment-score ${sentimentClass}">
+                                <span class="score-value">${Math.round(sentiment.score * 100)}%</span>
+                                <span class="score-label">${sentimentText}</span>
+                            </div>
+                            <div class="sentiment-details">
+                                <p>Based on ${sentiment.sources} recent news sources and social media discussions</p>
+                                <div class="trending-keywords">
+                                    <h4>Trending Keywords:</h4>
+                                    <div class="keyword-container">
+                                        ${keywordsHtml}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    // Simple handler for timeframe selection
+                    function handleTimeframeChange(select) {
+                        console.log("Timeframe selected:", select.value);
+                        
+                        // Get the question container
+                        const questionContainer = document.querySelector('.question-container');
+                        
+                        if (select.value) {
+                            // Show questions immediately
+                            questionContainer.style.display = 'block';
+                            
+                            // Get crypto value
+                            const cryptoValue = document.getElementById('crypto-select').value;
+                            
+                            // Make sure first question is visible
+                            const allQuestions = document.querySelectorAll('.question-card');
+                            allQuestions.forEach(q => q.classList.remove('active'));
+                            
+                            const firstQuestion = document.querySelector('.question-card[data-question="1"]');
+                            firstQuestion.classList.add('active');
+                            
+                            // Make sure question controls are visible
+                            document.querySelector('.detector-controls').style.display = 'flex';
+                            
+                            // Update first question with context
+                            updateFirstQuestionSimple(cryptoValue, select.value);
+    } else {
+                            // Hide questions if no timeframe selected
+                            questionContainer.style.display = 'none';
+                        }
+                    }
+                    
+                    // Variables to track questions and scores
+                    let currentQuestion = 1;
+                    let score = [];
+                    let detectedFlags = [];
+                    const totalQuestions = questions.length;
+                    
+                    // Function to show a specific question
+                    function showQuestion(num) {
+                        questions.forEach(q => {
+                            q.classList.remove('active');
+                        });
+                        
+                        const questionToShow = document.querySelector(`.question-card[data-question="${num}"]`);
+                        if (questionToShow) {
+                            questionToShow.classList.add('active');
+                        }
+                        
+                        // Update progress bar
+                        const progressPercent = (num / totalQuestions) * 100;
+                        progressBar.style.width = `${progressPercent}%`;
+                    }
+                    
+                    // Function to handle option selection
+                    function handleOptionSelect(button) {
+                        // Remove selected class from all siblings
+                        const parentContainer = button.closest('.options-container');
+                        parentContainer.querySelectorAll('.option-button').forEach(btn => {
+                            btn.classList.remove('selected');
+                        });
+                        
+                        // Add selected class to clicked button
+                        button.classList.add('selected');
+                        
+                        // Store answer
+                        const questionNum = parseInt(button.closest('.question-card').dataset.question);
+                        const value = parseInt(button.dataset.value);
+                        const flag = button.dataset.flag;
+                        
+                        // Store score
+                        score[questionNum-1] = value;
+                        
+                        // Store flag if present but don't show it yet
+                        if (flag && flag.trim() !== '') {
+                            // Add to detected flags list if not already there
+                            if (!detectedFlags.includes(flag)) {
+                                detectedFlags.push(flag);
+                            }
+                            
+                            // No longer showing the flag indicator immediately
+                            // We'll show all flags in the results section instead
+                        }
+                        
+                        // Enable next button
+                        nextBtn.removeAttribute('disabled');
+                    }
+                    
+                    // Function to calculate and display results
+function calculateResults() {
+                        // Calculate average score
+                        const scoreSum = score.reduce((a, b) => a + b, 0);
+                        const avgScore = scoreSum / score.length;
+                        
+                        // Create results container
+        const resultsSection = document.createElement('div');
+        resultsSection.id = 'results-section';
+        resultsSection.className = 'results-section';
+                        
+                        // Determine risk class and description based on average score
+                        let riskClass, riskDescription;
+                        
+                        if (avgScore >= 2.5) {
+        riskClass = 'high-risk';
+                            riskDescription = 'High Risk - Significant red flags detected';
+                        } else if (avgScore >= 1.5) {
+        riskClass = 'medium-risk';
+                            riskDescription = 'Medium Risk - Several concerning indicators present';
+                        } else if (avgScore >= 0.75) {
+        riskClass = 'low-medium-risk';
+                            riskDescription = 'Low-Medium Risk - Some minor concerns present';
+    } else {
+                            riskClass = 'lower-risk';
+                            riskDescription = 'Lower Risk - Few to no significant red flags detected';
+                        }
+                        
+                        // Get the selected cryptocurrency
+                        const selectedCrypto = document.getElementById('crypto-select').value;
+                        const cryptoDisplay = selectedCrypto.charAt(0).toUpperCase() + selectedCrypto.slice(1);
+                        
+                        // Create results HTML
+    resultsSection.innerHTML = `
+                            <div class="results-container" style="display: block;">
+                                <div class="results-header">
+                                    <h2>Risk Assessment Results</h2>
+                                    <p>Based on your answers, we've analyzed the risk level for ${cryptoDisplay}</p>
+        </div>
+                                
+                                <div class="results-score-container">
+                                    <div class="results-meter">
+                                        <div class="results-marker" style="left: ${avgScore / 3 * 100}%">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                    </div>
+                                    <div class="results-score ${riskClass}">
+                                        <span>${riskDescription}</span>
+                                    </div>
+        </div>
+        
+                                <div class="results-summary">
+                                    <p>Your answers indicate a ${riskClass.replace('-risk', '').replace('-', ' ')} risk level for this investment opportunity. ${detectedFlags.length > 0 ? 'We detected the following red flags:' : 'No major red flags were detected, but always do your own research.'}</p>
+        </div>
+        
+                                ${detectedFlags.length > 0 ? `
+                                <div class="results-flags">
+                                    <h4>Detected Red Flags</h4>
+                                    <div class="detailed-results">
+                                        ${detectedFlags.map(flag => `
+                                            <div class="detected-flag-item">
+                                                <i class="fas fa-exclamation-circle"></i>
+                                                <span>${flag.replace(/-/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</span>
+        </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                ` : ''}
+                                
+                                <div class="results-actions">
+                                    <button class="restart-button" onclick="restartAssessment()">
+                                        <i class="fas fa-redo"></i> Restart Assessment
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        // Add results section to page
+                        document.querySelector('.detector-container').appendChild(resultsSection);
+                        
+                        // Hide question container
+                        document.querySelector('.question-container').style.display = 'none';
+                        
+                        // Hide navigation controls
+                        document.querySelector('.detector-controls').style.display = 'none';
+                        
+                        // Show results section immediately without animation
+                        resultsSection.style.display = 'block';
+                        
+                        // Call the sentiment analysis function if a cryptocurrency was selected
+                        if (selectedCrypto && selectedCrypto !== 'other') {
+                            displaySentimentAnalysis(cryptoDisplay);
+                        }
+                    }
+                    
+                    // Function to restart assessment
+function restartAssessment() {
+    // Reset variables
+    currentQuestion = 1;
+    score = [];
+    detectedFlags = [];
+    
+    // Hide results section
+                        const resultsSection = document.getElementById('results-section');
+                        if (resultsSection) {
+                            resultsSection.innerHTML = '';
+                            resultsSection.classList.remove('active');
+                            resultsSection.style.display = 'none';
+                        }
+    
+    // Show first question
+    questions.forEach(question => {
+        question.classList.remove('active');
+    });
+    document.querySelector('.question-card[data-question="1"]').classList.add('active');
+    
+    // Reset option selections
+    document.querySelectorAll('.option-button').forEach(button => {
+        button.classList.remove('selected');
+    });
+    
+    // Hide all red flag indicators
+    document.querySelectorAll('.red-flag-indicator').forEach(indicator => {
+        indicator.classList.remove('visible');
+    });
+    
+    // Reset progress bar
+    progressBar.style.width = '10%';
+    
+    // Show navigation buttons
+                        document.querySelector('.detector-controls').style.display = 'flex';
+    
+    // Reset next/prev buttons
+    nextBtn.innerHTML = 'Next Question <i class="fas fa-arrow-right"></i>';
+    nextBtn.setAttribute('disabled', true);
+    prevBtn.setAttribute('disabled', true);
+}
+
+                    // Add event listeners for option buttons
+                    document.querySelectorAll('.option-button').forEach(button => {
+                        button.addEventListener('click', function() {
+                            handleOptionSelect(this);
+                        });
+                    });
+                    
+                    // Add event listener for next button
+                    nextBtn.addEventListener('click', function() {
+                        if (currentQuestion < totalQuestions) {
+                            currentQuestion++;
+                            showQuestion(currentQuestion);
+                            
+                            // Enable previous button
+                            prevBtn.removeAttribute('disabled');
+                            
+                            // Check if next button should be enabled
+                            if (score[currentQuestion-1] !== undefined) {
+                                nextBtn.removeAttribute('disabled');
+                            } else {
+                                nextBtn.setAttribute('disabled', true);
+                            }
+                            
+                            // Change button text on last question
+                            if (currentQuestion === totalQuestions) {
+                                nextBtn.innerHTML = 'See Results <i class="fas fa-check-circle"></i>';
+                            }
+                        } else {
+                            // Show results
+                            calculateResults();
+                        }
+                    });
+                    
+                    // Add event listener for prev button
+                    prevBtn.addEventListener('click', function() {
+                        if (currentQuestion > 1) {
+                            currentQuestion--;
+                            showQuestion(currentQuestion);
+                            
+                            // Disable prev button if on first question
+                            if (currentQuestion === 1) {
+                                prevBtn.setAttribute('disabled', true);
+                            }
+                            
+                            // Enable next button if this question has been answered
+                            if (score[currentQuestion-1] !== undefined) {
+                                nextBtn.removeAttribute('disabled');
+                            } else {
+                                nextBtn.setAttribute('disabled', true);
+                            }
+                            
+                            // Change button text if not on last question
+                            if (currentQuestion < totalQuestions) {
+                                nextBtn.innerHTML = 'Next Question <i class="fas fa-arrow-right"></i>';
+                            }
+                        }
+                    });
+                    
+                    // Setup event listeners
+                    cryptoSelect.addEventListener('change', function() {
+                        handleCryptoChange(this);
+                    });
+                    
+                    timeDurationSelect.addEventListener('change', function() {
+                        handleTimeframeChange(this);
+                    });
+                    
+                    // Make the restartAssessment function available globally
+                    window.restartAssessment = restartAssessment;
+                });
+</script>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

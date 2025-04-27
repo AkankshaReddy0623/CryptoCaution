@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Resources - CryptoCaution</title>
+    <style>
+        :root {
+            --deep-space-purple: #4A148C;
+            --cosmic-blue: #0D47A1;
+            --aurora-purple: #B388FF;
+            --galaxy-black: #090909;
+            --star-white: #FFFFFF;
+            --supernova-yellow: #FFD600;
+            --red-giant: #D50000;
+            --success-green: #00C853;
+            --warning-orange: #FF6D00;
+            --moderate-orange: #F57C00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--galaxy-black);
+            color: var(--star-white);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--deep-space-purple);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--star-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: var(--star-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--aurora-purple);
+        }
+
+        .nav-links a.active {
+            color: var(--aurora-purple);
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--aurora-purple);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--star-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 60px 0 40px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.3), rgba(13, 71, 161, 0.3));
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(179, 136, 255, 0.1) 0%, rgba(9, 9, 9, 0) 50%),
+                radial-gradient(circle at 80% 70%, rgba(13, 71, 161, 0.1) 0%, rgba(9, 9, 9, 0) 50%);
+            z-index: -1;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--star-white);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Resource Categories Section */
+        .resources-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--aurora-purple);
+            margin: 15px auto 0;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .resource-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-header {
+            background-color: var(--deep-space-purple);
+            color: var(--star-white);
+            padding: 15px 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-header i {
+            margin-right: 10px;
+            color: var(--aurora-purple);
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-description {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .pdf-links {
+            list-style: none;
+        }
+
+        .pdf-link {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pdf-link:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .pdf-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(213, 0, 0, 0.2);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .pdf-icon i {
+            color: var(--red-giant);
+            font-size: 1.2rem;
+        }
+
+        .pdf-content {
+            flex: 1;
+        }
+
+        .pdf-content h4 {
+            margin-bottom: 5px;
+            color: var(--aurora-purple);
+        }
+
+        .pdf-content p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(179, 136, 255, 0.1);
+            color: var(--aurora-purple);
+            border: 1px solid var(--aurora-purple);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            background-color: var(--aurora-purple);
+            color: var(--star-white);
+        }
+
+        .download-btn i {
+            margin-right: 5px;
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(179, 136, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--aurora-purple);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Interactive Learning Section */
+        .interactive-section {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--galaxy-black);
+            border-top: 4px solid var(--deep-space-purple);
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--aurora-purple);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--star-white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--aurora-purple);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--star-white);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter-btn {
+            background-color: var(--deep-space-purple);
+            color: var(--star-white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--deep-space-purple);
+        }
+
+        .social-icon i {
+            color: var(--star-white);
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 100ms;
+        }
+
+        .delay-2 {
+            animation-delay: 200ms;
+        }
+
+        .delay-3 {
+            animation-delay: 300ms;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--deep-space-purple);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 20px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+    <!-- For icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="home.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" fill="#090909" stroke="#B388FF" stroke-width="2"/>
+                        <path d="M20 10V30M10 20H30" stroke="#B388FF" stroke-width="2"/>
+                        <path d="M26 14L14 26M14 14L26 26" stroke="#FFD600" stroke-width="2"/>
+                    </svg>
+                    <h1>CryptoCaution</h1>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="education.html" class="active">Education</a></li>
+                <li><a href="library.html">Scam Library</a></li>
+                <li><a href="redflag.html">Tools</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fade-in">Crypto Education Hub</h1>
+            <p class="fade-in delay-1">Comprehensive resources to help you understand cryptocurrency scams and how to protect yourself in the digital finance world.</p>
+        </div>
+    </header>
+
+    <!-- Basics of Intraday Trading Section -->
+    <section class="resources-section">
+        <div class="container">
+            <h2 class="section-title">Basics of Intraday Trading</h2>
+            <p class="text-center fade-in" style="text-align: center; margin-bottom: 30px;">
+                Understanding the fundamentals of chart reading and technical analysis for cryptocurrency intraday trading.
+            </p>
+
+            <!-- Candlestick Charts Explanation -->
+            <div class="card-container fade-in" style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 30px; margin-bottom: 40px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);">
+                <h3 style="color: var(--aurora-purple); margin-bottom: 20px; text-align: center;">Understanding Candlestick Charts</h3>
+                
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 30px;">
+                    <div style="flex: 1; min-width: 300px; margin-right: 30px;">
+                        <p style="margin-bottom: 15px;">
+                            <strong>Candlestick charts</strong> are the most popular chart type for intraday traders, providing rich information about price movements during a specific time period.
+                        </p>
+                        <p style="margin-bottom: 15px;">
+                            Each candlestick represents a time period (1 minute, 5 minutes, 1 hour, etc.) and shows four key price points:
+                        </p>
+                        <ul style="list-style-type: none; margin-left: 10px; margin-bottom: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Open:</strong> The price at the beginning of the time period</li>
+                            <li style="margin-bottom: 8px;"><strong>Close:</strong> The price at the end of the time period</li>
+                            <li style="margin-bottom: 8px;"><strong>High:</strong> The highest price reached during the time period</li>
+                            <li style="margin-bottom: 8px;"><strong>Low:</strong> The lowest price reached during the time period</li>
+                        </ul>
+                        <p>
+                            The <span style="color: var(--success-green);">green/bullish</span> or <span style="color: var(--red-giant);">red/bearish</span> color of the candle indicates whether the price went up or down during that period.
+                        </p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; text-align: center;">
+                        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                            <!-- Bullish Candle Illustration -->
+                            <div style="position: relative; margin: 0 30px; text-align: center;">
+                                <div style="width: 40px; height: 100px; margin: 0 auto;">
+                                    <div style="width: 2px; height: 30px; background-color: var(--success-green); margin: 0 auto;"></div>
+                                    <div style="width: 40px; height: 40px; background-color: var(--success-green); border-radius: 2px;"></div>
+                                    <div style="width: 2px; height: 30px; background-color: var(--success-green); margin: 0 auto;"></div>
+                                </div>
+                                <div style="margin-top: 10px; font-size: 0.9rem;">Bullish Candle</div>
+                                <div style="position: absolute; top: 0; right: -40px; font-size: 0.8rem;">High</div>
+                                <div style="position: absolute; top: 30px; right: -40px; font-size: 0.8rem;">Open</div>
+                                <div style="position: absolute; top: 70px; right: -40px; font-size: 0.8rem;">Close</div>
+                                <div style="position: absolute; top: 100px; right: -40px; font-size: 0.8rem;">Low</div>
+                            </div>
+                            
+                            <!-- Bearish Candle Illustration -->
+                            <div style="position: relative; margin: 0 30px; text-align: center;">
+                                <div style="width: 40px; height: 100px; margin: 0 auto;">
+                                    <div style="width: 2px; height: 30px; background-color: var(--red-giant); margin: 0 auto;"></div>
+                                    <div style="width: 40px; height: 40px; background-color: var(--red-giant); border-radius: 2px;"></div>
+                                    <div style="width: 2px; height: 30px; background-color: var(--red-giant); margin: 0 auto;"></div>
+                                </div>
+                                <div style="margin-top: 10px; font-size: 0.9rem;">Bearish Candle</div>
+                                <div style="position: absolute; top: 0; right: -40px; font-size: 0.8rem;">High</div>
+                                <div style="position: absolute; top: 30px; right: -40px; font-size: 0.8rem;">Close</div>
+                                <div style="position: absolute; top: 70px; right: -40px; font-size: 0.8rem;">Open</div>
+                                <div style="position: absolute; top: 100px; right: -40px; font-size: 0.8rem;">Low</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Candlestick Patterns -->
+                <h4 style="color: var(--supernova-yellow); margin: 30px 0 15px;">Common Candlestick Patterns</h4>
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px;">
+                    <div style="flex: 1; min-width: 220px; margin-right: 15px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 5px;">
+                        <h5 style="color: var(--star-white); margin-bottom: 10px;">Doji</h5>
+                        <p style="font-size: 0.9rem;">A candle with very small or no body, indicating indecision in the market. Often signals a potential trend reversal.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 220px; margin-right: 15px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 5px;">
+                        <h5 style="color: var(--star-white); margin-bottom: 10px;">Hammer</h5>
+                        <p style="font-size: 0.9rem;">A bullish reversal pattern with a small body at the top and a long lower shadow, indicating potential trend reversal from bearish to bullish.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 220px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 5px;">
+                        <h5 style="color: var(--star-white); margin-bottom: 10px;">Engulfing Pattern</h5>
+                        <p style="font-size: 0.9rem;">A two-candle pattern where the second candle completely engulfs the first, indicating a potential trend reversal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading Chart Types -->
+            <div class="card-container fade-in delay-1" style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 30px; margin-bottom: 40px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);">
+                <h3 style="color: var(--aurora-purple); margin-bottom: 20px; text-align: center;">Other Trading Chart Types</h3>
+                
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                    <div style="flex: 1; min-width: 300px; margin-right: 20px; margin-bottom: 20px;">
+                        <h4 style="color: var(--supernova-yellow); margin-bottom: 15px;">Line Charts</h4>
+                        <p style="margin-bottom: 15px;">The simplest chart type, showing only closing prices connected by a line. Useful for seeing overall trends but offers less detail than other chart types.</p>
+                    
+                        <h4 style="color: var(--supernova-yellow); margin: 20px 0 15px;">Bar Charts</h4>
+                        <p style="margin-bottom: 15px;">Similar to candlesticks but using vertical bars with small horizontal lines to mark opening and closing prices. Shows the same OHLC data but in a different visual format.</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; margin-bottom: 20px;">
+                        <h4 style="color: var(--supernova-yellow); margin-bottom: 15px;">Heikin-Ashi Charts</h4>
+                        <p style="margin-bottom: 15px;">A modified version of candlestick charts that uses averaged price data to filter out market noise and better identify trends. Popular among intraday traders for smoother trend visualization.</p>
+                    
+                        <h4 style="color: var(--supernova-yellow); margin: 20px 0 15px;">Renko Charts</h4>
+                        <p>Focus exclusively on price changes above a specified amount, filtering out minor price movements. Useful for identifying support and resistance levels in volatile markets.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading Timeframes -->
+            <div class="card-container fade-in delay-2" style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);">
+                <h3 style="color: var(--aurora-purple); margin-bottom: 20px; text-align: center;">Intraday Trading Timeframes</h3>
+                
+                <div class="chart-container" style="position: relative; height: 300px; margin: 20px 0 30px;">
+                    <canvas id="timeframeChart"></canvas>
+                </div>
+                
+                <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    Different timeframes offer varying perspectives on the market. Shorter timeframes (1-5 minutes) provide more detail but can be noisy, while longer timeframes (1-4 hours) show clearer trends but provide fewer trading opportunities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intraday Trading Education Section -->
+    <section class="resources-section" style="background: rgba(0, 0, 0, 0.2);">
+        <div class="container">
+            <h2 class="section-title">Intraday Trading Resources</h2>
+            <p class="text-center fade-in" style="text-align: center; margin-bottom: 30px;">Learn about the risks, strategies, and best practices for cryptocurrency intraday trading.</p>
+            
+            <!-- Price Comparison Chart -->
+            <div class="card-container fade-in" style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 30px; margin-bottom: 40px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);">
+                <h3 style="color: var(--aurora-purple); margin-bottom: 20px; text-align: center;">Major Cryptocurrencies Price Comparison</h3>
+                <p style="text-align: center; margin-bottom: 20px;">Compare the price movements of major cryptocurrencies to understand correlation patterns in intraday trading.</p>
+                <div class="chart-container" style="position: relative; height: 300px; margin-bottom: 20px;">
+                    <canvas id="priceComparisonChart"></canvas>
+                </div>
+                <p style="text-align: center; font-style: italic; font-size: 0.9rem;">Note: Chart shows simulated historical price movements for educational purposes only.</p>
+            </div>
+            
+            <!-- Risk Analysis Chart -->
+            <div class="chart-container fade-in" style="position: relative; height: 300px; margin-bottom: 40px;">
+                <canvas id="intradayRiskChart"></canvas>
+            </div>
+            
+            <div class="resources-grid">
+                <!-- Intraday Trading Guides -->
+                <div class="resource-card fade-in">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line"></i> Intraday Trading Fundamentals
+                    </div>
+                    <div class="card-body">
+                        <div class="resource-description">
+                            <p>Essential information about cryptocurrency intraday trading, including key risks, terminology, and market mechanics.</p>
+                        </div>
+                        <ul class="pdf-links" id="intraday-fundamentals">
+                            <div class="loading-spinner">
+                                <div class="spinner"></div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Risk Management -->
+                <div class="resource-card fade-in delay-1">
+                    <div class="card-header">
+                        <i class="fas fa-shield-alt"></i> Risk Management Strategies
+                    </div>
+                    <div class="card-body">
+                        <div class="resource-description">
+                            <p>Critical risk management techniques specifically for cryptocurrency intraday traders, including position sizing and stop-loss strategies.</p>
+                        </div>
+                        <ul class="pdf-links" id="risk-management">
+                            <div class="loading-spinner">
+                                <div class="spinner"></div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Market Manipulation Awareness -->
+                <div class="resource-card fade-in delay-2">
+                    <div class="card-header">
+                        <i class="fas fa-exclamation-triangle"></i> Market Insights & Trading Strategies
+                    </div>
+                    <div class="card-body">
+                        <div class="resource-description">
+                            <p>Learn to identify common manipulation tactics in crypto markets and implement effective day trading strategies from trusted sources.</p>
+                        </div>
+                        <ul class="pdf-links" id="market-awareness">
+                            <div class="loading-spinner">
+                                <div class="spinner"></div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Intraday Trading Statistics -->
+            <div style="margin-top: 50px;">
+                <h3 style="text-align: center; margin-bottom: 30px; color: var(--aurora-purple);">Intraday Trading Success Rates</h3>
+                <div class="chart-container fade-in" style="position: relative; height: 300px; margin-bottom: 40px;">
+                    <canvas id="tradingSuccessChart"></canvas>
+                </div>
+                <p style="text-align: center; font-style: italic; max-width: 800px; margin: 0 auto; opacity: 0.8;">
+                    Note: According to industry studies, the majority of retail cryptocurrency day traders lose money. These statistics highlight the importance of proper education, risk management, and realistic expectations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Learning Section -->
+    <section class="interactive-section">
+        <div class="container">
+            <h2 class="section-title">Video Tutorials</h2>
+            <p class="text-center fade-in" style="text-align: center; margin-bottom: 30px;">Learn through our curated selection of expert video tutorials on cryptocurrency security and scam prevention.</p>
+            
+            <div class="video-container fade-in delay-1">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/EAYZm40ZgmI" title="Cryptocurrency Security - How to Keep Your Crypto Safe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Crypto Security Guide</a></li>
+                        <li><a href="#">Scam Recognition Tips</a></li>
+                        <li><a href="#">Recovery Resources</a></li>
+                        <li><a href="#">Verified Exchanges</a></li>
+                        <li><a href="#">Reporting Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Report a Scam</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest scam alerts and security tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 CryptoCaution. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
+
+        // Initialize intraday trading charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Define static PDF data
+            const pdfData = {
+                beginner: [
+                    {
+                        title: 'Cryptocurrency Scams 101',
+                        description: 'A beginner\'s guide to recognizing and avoiding common crypto scams',
+                        url: 'https://consumer.ftc.gov/articles/what-know-about-cryptocurrency-and-scams'
+                    },
+                    {
+                        title: 'Wallet Security Basics',
+                        description: 'Essential security practices for protecting your cryptocurrency wallets',
+                        url: 'https://www.cisa.gov/topics/crypto-security'
+                    },
+                    {
+                        title: 'Digital Identity Protection',
+                        description: 'How to protect your identity and accounts in the crypto ecosystem',
+                        url: 'https://www.identitytheft.gov/Steps'
+                    }
+                ],
+                advanced: [
+                    {
+                        title: 'Hardware Wallet Security Guide',
+                        description: 'Comprehensive guide to securing cryptocurrency with hardware wallets',
+                        url: 'https://www.ledger.com/academy/hardwarewallet/best-practices-when-using-a-hardware-wallet'
+                    },
+                    {
+                        title: 'Smart Contract Security Analysis',
+                        description: 'Understanding and identifying vulnerabilities in smart contracts',
+                        url: 'https://ethereum.org/en/developers/docs/smart-contracts/security/'
+                    },
+                    {
+                        title: 'Crypto OPSEC Best Practices',
+                        description: 'Operational security practices for high-value cryptocurrency holders',
+                        url: 'https://blog.keys.casa/operational-security-practices-for-cryptocurrency-users/'
+                    }
+                ],
+                scamAnalysis: [
+                    {
+                        title: 'Major Exchange Hacks Analysis',
+                        description: 'Case studies of significant cryptocurrency exchange security breaches',
+                        url: 'https://www.sec.gov/oiea/investor-alerts-and-bulletins/digital-asset-and-crypto-investment-scams'
+                    },
+                    {
+                        title: 'ICO Fraud Research Report',
+                        description: 'Investigation into fraudulent Initial Coin Offering schemes',
+                        url: 'https://www.sec.gov/ICO'
+                    },
+                    {
+                        title: 'Pump and Dump Schemes Explained',
+                        description: 'How cryptocurrency market manipulation schemes work and how to spot them',
+                        url: 'https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/CustomerAdvisory_PumpandDump0218.html'
+                    }
+                ],
+                // Add new resources for intraday trading
+                intradayFundamentals: [
+                    {
+                        title: 'Intraday Trading Defined',
+                        description: 'Comprehensive explanation of intraday trading concepts and terminology',
+                        url: 'https://www.investopedia.com/terms/i/intraday.asp'
+                    },
+                    {
+                        title: 'Crypto Market Volatility Guide',
+                        description: 'Understanding and navigating cryptocurrency market volatility as an intraday trader',
+                        url: 'https://www.coindesk.com/'
+                    },
+                    {
+                        title: 'Technical Analysis for Day Traders',
+                        description: 'Introduction to key technical indicators used in cryptocurrency day trading',
+                        url: 'https://www.forbes.com/advisor/investing/cryptocurrency/top-10-cryptocurrencies/'
+                    }
+                ],
+                riskManagement: [
+                    {
+                        title: 'Stop-Loss Strategy Implementation',
+                        description: 'Comprehensive guide to implementing effective stop-loss strategies in volatile crypto markets',
+                        url: 'https://www.investopedia.com/articles/stocks/09/use-stop-loss.asp'
+                    },
+                    {
+                        title: 'Position Sizing for Crypto Trading',
+                        description: 'Mathematical approaches to determine appropriate position sizes based on risk tolerance',
+                        url: 'https://www.mitrade.com/insights/crypto/cryptocurrencies-investment/day-trading-crypto-strategy'
+                    },
+                    {
+                        title: 'Trading Psychology Guide',
+                        description: 'Managing emotions and cognitive biases during high-stress intraday trading sessions',
+                        url: 'https://www.forbes.com/advisor/in/investing/cryptocurrency/best-crypto-for-day-trading/'
+                    }
+                ],
+                marketAwareness: [
+                    {
+                        title: 'Pump and Dump Detection Techniques',
+                        description: 'How to identify and avoid orchestrated price manipulation schemes in smaller cryptocurrencies',
+                        url: 'https://www.sec.gov/oiea/investor-alerts-and-bulletins/ia_pumpdump'
+                    },
+                    {
+                        title: 'Day Trading Strategy Blueprint',
+                        description: 'A simple yet effective day trading strategy for Bitcoin and major cryptocurrencies',
+                        url: 'https://www.mitrade.com/insights/crypto/cryptocurrencies-investment/day-trading-crypto-strategy'
+                    },
+                    {
+                        title: 'Best Crypto Exchanges for Day Trading',
+                        description: 'Analysis of top exchanges with features specifically beneficial for day traders',
+                        url: 'https://www.investopedia.com/best-crypto-exchanges-5071855'
+                    }
+                ]
+            };
+            
+            // Render PDF lists
+            renderPDFList('beginner-guides', pdfData.beginner);
+            renderPDFList('advanced-security', pdfData.advanced);
+            renderPDFList('scam-analysis', pdfData.scamAnalysis);
+            
+            // Render intraday trading resources
+            renderPDFList('intraday-fundamentals', pdfData.intradayFundamentals);
+            renderPDFList('risk-management', pdfData.riskManagement);
+            renderPDFList('market-awareness', pdfData.marketAwareness);
+            
+            // Initialize charts immediately after rendering resources
+            if (document.getElementById('intradayRiskChart') && document.getElementById('tradingSuccessChart')) {
+                initIntradayCharts();
+            }
+        });
+        
+        // Render a list of PDFs
+        function renderPDFList(containerId, pdfs) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            let html = '';
+            pdfs.forEach(pdf => {
+                html += `
+                    <li class="pdf-link">
+                        <div class="pdf-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="pdf-content">
+                            <h4>${pdf.title}</h4>
+                            <p>${pdf.description}</p>
+                            <a href="${pdf.url}" class="download-btn" target="_blank">
+                                <i class="fas fa-download"></i> Download PDF
+                            </a>
+                        </div>
+                    </li>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function initIntradayCharts() {
+            // Remove any loading indicators
+            document.querySelectorAll('.loading-spinner').forEach(spinner => {
+                spinner.remove();
+            });
+            
+            // Intraday Trading Risk Management Doughnut Chart
+            const riskCtx = document.getElementById('intradayRiskChart').getContext('2d');
+            const intradayRiskChart = new Chart(riskCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Position Sizing (30%)', 'Stop-Loss Strategy (25%)', 'Take-Profit Targets (20%)', 'Risk-Reward Ratio (15%)', 'Diversification (10%)'],
+                    datasets: [{
+                        data: [30, 25, 20, 15, 10],
+                        backgroundColor: [
+                            '#6b71d6', // Purple
+                            '#7bd67b', // Green
+                            '#d6cb7b', // Yellow
+                            '#d67b7b', // Red
+                            '#7bcad6'  // Blue
+                        ],
+                        borderWidth: 0,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#e0e0e0',
+                                font: {
+                                    size: 12
+                                },
+                                padding: 20
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Intraday Risk Management Components',
+                            color: '#e0e0e0',
+                            font: {
+                                size: 18
+                            },
+                            padding: 20
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const total = context.dataset.data.reduce((acc, data) => acc + data, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${label}: ${percentage}%`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%',
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+
+            // Price Comparison Chart for Major Cryptocurrencies
+            const priceComparisonCtx = document.getElementById('priceComparisonChart').getContext('2d');
+            const priceComparisonChart = new Chart(priceComparisonCtx, {
+                type: 'line',
+                data: {
+                    labels: ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM'],
+                    datasets: [
+                        {
+                            label: 'Bitcoin (BTC)',
+                            data: [42300, 42450, 42100, 42700, 42900, 43100, 43050, 43200],
+                            borderColor: '#F7931A',
+                            backgroundColor: 'rgba(247, 147, 26, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 3,
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Ethereum (ETH)',
+                            data: [2950, 2980, 2930, 2970, 3020, 3050, 3040, 3080],
+                            borderColor: '#627EEA',
+                            backgroundColor: 'rgba(98, 126, 234, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 3,
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Cardano (ADA)',
+                            data: [1.20, 1.22, 1.19, 1.21, 1.24, 1.26, 1.25, 1.27],
+                            borderColor: '#0033AD',
+                            backgroundColor: 'rgba(0, 51, 173, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 3,
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Solana (SOL)',
+                            data: [120, 122, 119, 124, 127, 129, 128, 131],
+                            borderColor: '#00FFA3',
+                            backgroundColor: 'rgba(0, 255, 163, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 3,
+                            tension: 0.2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#e0e0e0'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#e0e0e0'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#e0e0e0',
+                                padding: 20,
+                                usePointStyle: true,
+                                pointStyle: 'circle'
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: 'rgba(255, 255, 255, 0.2)',
+                            borderWidth: 1
+                        }
+                    }
+                }
+            });
+
+            // Trader Success Rate by Experience Level Bar Chart
+            const successCtx = document.getElementById('tradingSuccessChart').getContext('2d');
+            const tradingSuccessChart = new Chart(successCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Beginners', 'Intermediate', 'Advanced', 'Professional'],
+                    datasets: [{
+                        label: 'Success Rate (%)',
+                        data: [15, 35, 55, 75],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(75, 192, 192)',
+                            'rgb(153, 102, 255)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Success Rate (%)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Trader Experience Level'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Intraday Trading Success by Experience Level',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+    <!-- Timeframe Chart Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('timeframeChart');
+            
+            if(ctx) {
+                const timeframeChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['1 Minute', '5 Minutes', '15 Minutes', '30 Minutes', '1 Hour', '4 Hours'],
+                        datasets: [
+                            {
+                                label: 'Detail Level',
+                                data: [95, 85, 75, 65, 55, 40],
+                                backgroundColor: 'rgba(147, 112, 219, 0.7)',
+                                borderColor: 'rgba(147, 112, 219, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Trend Clarity',
+                                data: [30, 45, 60, 70, 80, 90],
+                                backgroundColor: 'rgba(0, 250, 154, 0.7)',
+                                borderColor: 'rgba(0, 250, 154, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Trading Opportunities',
+                                data: [90, 80, 70, 60, 50, 30],
+                                backgroundColor: 'rgba(255, 215, 0, 0.7)',
+                                borderColor: 'rgba(255, 215, 0, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    color: 'rgba(255, 255, 255, 0.7)'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: 'rgba(255, 255, 255, 0.7)'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: 'rgba(255, 255, 255, 0.9)'
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                                titleColor: 'rgba(255, 255, 255, 1)',
+                                bodyColor: 'rgba(255, 255, 255, 0.8)',
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + context.raw + '/100';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

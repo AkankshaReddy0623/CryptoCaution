@@ -1,0 +1,2661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scam Library - CryptoCaution</title>
+    <style>
+        :root {
+            --deep-space-purple: #4A148C;
+            --cosmic-blue: #0D47A1;
+            --aurora-purple: #B388FF;
+            --galaxy-black: #090909;
+            --star-white: #FFFFFF;
+            --supernova-yellow: #FFD600;
+            --red-giant: #D50000;
+            --moderate-orange: #F57C00;
+            --easy-green: #2E7D32;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--galaxy-black);
+            color: var(--star-white);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--deep-space-purple);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--star-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: var(--star-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--aurora-purple);
+        }
+
+        .nav-links a.active {
+            color: var(--aurora-purple);
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--aurora-purple);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--star-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, rgba(74, 20, 140, 0.8), rgba(13, 71, 161, 0.8)), var(--galaxy-black);
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 5px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .search-bar:focus-within {
+            box-shadow: 0 0 15px rgba(179, 136, 255, 0.5);
+            border-color: var(--aurora-purple);
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            color: var(--star-white);
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-bar button {
+            background: var(--aurora-purple);
+            border: none;
+            color: var(--star-white);
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: #9c64ff;
+        }
+
+        .search-bar button i {
+            margin-right: 5px;
+        }
+
+        /* Search Tags */
+        .search-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--star-white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 0 5px 5px 0;
+        }
+
+        .search-tag:hover {
+            background: rgba(179, 136, 255, 0.2);
+        }
+
+        .search-tag.active {
+            background: var(--aurora-purple);
+            color: var(--star-white);
+            box-shadow: 0 2px 8px rgba(179, 136, 255, 0.5);
+        }
+
+        /* Scam Grid Layout */
+        .scam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .scam-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .scam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .scam-card-header {
+            background: var(--deep-space-purple);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .scam-card-title {
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .scam-card-title i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        .difficulty-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .difficulty-easy {
+            background-color: var(--easy-green);
+        }
+
+        .difficulty-moderate {
+            background-color: var(--moderate-orange);
+        }
+
+        .difficulty-sophisticated {
+            background-color: var(--red-giant);
+        }
+
+        .scam-card-body {
+            padding: 20px;
+        }
+
+        .scam-description {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .learn-more-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: var(--star-white);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .learn-more-btn:hover {
+            background: rgba(179, 136, 255, 0.2);
+        }
+
+        .learn-more-btn i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .learn-more-btn.active i {
+            transform: rotate(180deg);
+        }
+
+        .extended-content {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .extended-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .case-study {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .case-study-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .case-study-title i {
+            color: var(--supernova-yellow);
+            margin-right: 8px;
+        }
+
+        .case-study-content {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .case-study-image {
+            width: 100%;
+            border-radius: 5px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .protection-tips {
+            margin-top: 20px;
+        }
+
+        .protection-tips h4 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .protection-tips h4 i {
+            color: var(--aurora-purple);
+            margin-right: 8px;
+        }
+
+        .protection-tips ul {
+            list-style: none;
+        }
+
+        .protection-tips li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .protection-tips li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--aurora-purple);
+        }
+
+        .tech-details {
+            background: rgba(13, 71, 161, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .tech-details h4 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .tech-details h4 i {
+            color: var(--cosmic-blue);
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--galaxy-black);
+            border-top: 4px solid var(--deep-space-purple);
+            padding: 50px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--aurora-purple);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--star-white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--aurora-purple);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--star-white);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter-btn {
+            background-color: var(--deep-space-purple);
+            color: var(--star-white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--deep-space-purple);
+        }
+
+        .social-icon i {
+            color: var(--star-white);
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--aurora-purple);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--star-white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: #9c64ff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--deep-space-purple);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 20px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .scam-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 100ms;
+        }
+
+        .delay-2 {
+            animation-delay: 200ms;
+        }
+
+        .delay-3 {
+            animation-delay: 300ms;
+        }
+    </style>
+    <!-- For icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="home.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" fill="#090909" stroke="#B388FF" stroke-width="2"/>
+                        <path d="M20 10V30M10 20H30" stroke="#B388FF" stroke-width="2"/>
+                        <path d="M26 14L14 26M14 14L26 26" stroke="#FFD600" stroke-width="2"/>
+                    </svg>
+                    <h1>CryptoCaution</h1>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="library.html" class="active">Scam Library</a></li>
+                <li><a href="redflag.html">Tools</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fade-in">Scam Library</h1>
+            <p class="fade-in delay-1">Explore our comprehensive database of cryptocurrency scam types, case studies, and protection strategies to safeguard your digital assets.</p>
+            
+            <!-- Search Bar -->
+            <div class="search-container fade-in delay-2">
+                <div class="search-bar">
+                    <input type="text" id="scam-search" placeholder="Search for specific scams (e.g., 'NFT scam', 'Telegram hack')">
+                    <button type="button">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+                <div class="search-tags">
+                    <div class="search-tag">NFT Scams</div>
+                    <div class="search-tag">Telegram Hacks</div>
+                    <div class="search-tag">Wallet Drainers</div>
+                    <div class="search-tag">DeFi Exploits</div>
+                    <div class="search-tag">Twitter Scams</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Scam Grid Layout -->
+    <section class="container">
+            <div class="scam-grid">
+            <!-- Phishing Attacks -->
+                <div class="scam-card fade-in">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-fish-fins"></i> Phishing Attacks
+                        </h2>
+                        <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        Phishing attacks in cryptocurrency involve fraudulent attempts to obtain sensitive information such as private keys or wallet passwords by disguising as a trustworthy entity. Scammers create fake websites, emails, or messages that mimic legitimate platforms to trick users into revealing their credentials, enabling attackers to steal funds from compromised wallets.
+                        </p>
+                    <button class="learn-more-btn" data-target="phishing-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="phishing-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Fake Binance Email Campaign
+                                </h4>
+                                <p class="case-study-content">
+                                In January 2024, thousands of crypto users received an email appearing to be from Binance, warning about "suspicious activity" on their accounts. The email contained a button to "Secure Account Now" which led to a near-perfect clone of the Binance login page.
+                                </p>
+                            <img src="images/phishing-scam.jpg" alt="Fake Binance Email Screenshot" class="case-study-image">
+                                <p class="case-study-content">
+                                The fake site had a URL that looked legitimate at first glance (binance-secure-verify.com instead of binance.com). Users who entered their credentials saw a "verification processing" screen before being redirected to the real Binance site – unaware their information had been captured. Within hours, affected users reported unauthorized withdrawals totaling over $5.2 million.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Always check the exact URL before entering any credentials</li>
+                                <li>Enable 2FA on all cryptocurrency accounts and wallets</li>
+                                <li>Never click links from emails; access sites directly by typing the URL</li>
+                                <li>Use hardware wallets for added security</li>
+                                <li>Be suspicious of urgent requests requiring immediate action</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Phishing sites often employ sophisticated techniques such as SSL certificates, lookalike domains using homograph attacks (using characters that look similar), and copying the complete CSS/JavaScript from legitimate sites. They may also use cookie theft to bypass certain authentication methods.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Rug Pulls -->
+            <div class="scam-card fade-in delay-1">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-rug"></i> Rug Pulls
+                        </h2>
+                        <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        A "rug pull" occurs when cryptocurrency developers abandon a project and run away with investor funds. Typically, creators hype a new token, attract significant investment to pump the price, then suddenly sell their holdings and disappear—leaving investors with worthless tokens. These scams often involve elaborate marketing campaigns and false promises of revolutionary technology.
+                        </p>
+                    <button class="learn-more-btn" data-target="rugpull-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="rugpull-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: AnubisDAO's $60M Disappearance
+                                </h4>
+                                <p class="case-study-content">
+                                AnubisDAO, a dog-themed DeFi project, raised nearly $60 million in ETH through an Initial DEX Offering (IDO). The project had gained popularity due to the success of similar animal-themed tokens and promised innovative staking rewards.
+                                </p>
+                            <img src="images/rug-pull.png" alt="AnubisDAO Twitter Screenshot" class="case-study-image">
+                                <p class="case-study-content">
+                                Just 24 hours after the fundraising concluded, all raised funds were transferred to a different wallet address. The project's social media channels went dark, and developers became unreachable. Investors were left with worthless ANKH tokens and no recourse for recovery. The case demonstrated how even seemingly legitimate projects with significant backing can turn out to be sophisticated scams.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Research project developers' backgrounds and verify their identities</li>
+                                <li>Look for code audits from reputable security firms</li>
+                                <li>Check if liquidity is locked for a reasonable period</li>
+                                <li>Invest only what you can afford to lose, especially in new projects</li>
+                                <li>Be wary of projects with anonymous teams</li>
+                                <li>Check token distribution—large concentration among few wallets is a red flag</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated rug pulls often include backdoor functions in smart contracts that allow developers to bypass liquidity locks, mint unlimited tokens, or change critical parameters after launch. Tools like Etherscan's contract verification can help identify suspicious code, though even verified contracts may contain obfuscated vulnerabilities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Fake Exchanges -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-building-columns"></i> Fake Exchanges
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Fake cryptocurrency exchanges are fraudulent platforms designed to look like legitimate trading venues. These scams typically offer attractive features like zero fees, high returns, or exclusive tokens to lure unsuspecting investors. Once users deposit funds, they discover they cannot withdraw their cryptocurrencies, with operators disappearing with all deposits.
+                    </p>
+                    <button class="learn-more-btn" data-target="exchange-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="exchange-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: CoinTrade Global Disappearance
+                            </h4>
+                            <p class="case-study-content">
+                                CoinTrade Global appeared virtually overnight with a professional website, claiming to operate from Switzerland with regulatory compliance. The exchange offered substantially lower fees than competitors and promised "insured deposits" to attract users.
+                            </p>
+                            <img src="images/fake-exchange.png" alt="Fake Exchange Screenshot" class="case-study-image">
+                            <p class="case-study-content">
+                                After operating for three months and gaining thousands of users, CoinTrade Global suddenly implemented "maintenance mode" and stopped all withdrawals. Users who attempted to contact support received automated responses. Within days, the website went offline and all social media accounts were deleted. An estimated $18.4 million in cryptocurrency was stolen, with victims spread across 32 countries.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Use only well-established exchanges with proven track records</li>
+                                <li>Verify the exchange's regulatory compliance and licenses</li>
+                                <li>Search for independent reviews and user experiences</li>
+                                <li>Start with small amounts to test withdrawal processes</li>
+                                <li>Be suspicious of exchanges offering unusually favorable conditions</li>
+                                <li>Check the website's domain age and company registration details</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Fake exchanges often display artificial trading volume and manipulated price charts to appear legitimate. Some sophisticated operations even show false withdrawal confirmations on-screen while never actually processing transactions on the blockchain. Many use stolen KYC data purchased from dark web markets to create an illusion of legitimacy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Giveaway Scams -->
+                <div class="scam-card fade-in">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-gift"></i> Giveaway Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-easy">EASY</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Cryptocurrency giveaway scams promise to multiply or return more cryptocurrency than participants send. Scammers often impersonate celebrities, influencers, or crypto projects on social media, announcing fake promotional events requiring users to first send funds to "verify their address" before receiving larger amounts in return—which never arrive.
+                    </p>
+                    <button class="learn-more-btn" data-target="giveaway-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="giveaway-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Elon Musk YouTube Live Scam
+                            </h4>
+                            <p class="case-study-content">
+                                In a widespread scam, fraudsters hacked several popular YouTube channels and renamed them to "Tesla" or "SpaceX" with Elon Musk's image. They then streamed old interviews with Musk while overlaying text announcing a cryptocurrency giveaway.
+                            </p>
+                            <img src="images/giveaway-scam.jpg" alt="Fake YouTube Giveaway" class="case-study-image">
+                            <p class="case-study-content">
+                                The streams featured banners directing viewers to a website that promised to double any cryptocurrency sent to specific addresses. The scam was particularly effective because it used legitimate YouTube channels with large subscriber bases and appeared in recommended feeds. Over the course of several months, these scams collectively netted over $10 million in Bitcoin and Ethereum from victims worldwide.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Remember that legitimate projects and celebrities never ask you to send funds first</li>
+                                <li>Verify announcements through official channels only</li>
+                                <li>Be skeptical of "too good to be true" offers - no one gives away free money</li>
+                                <li>Check for spelling errors and unprofessional language</li>
+                                <li>Be wary of artificial urgency ("Limited time offer!")</li>
+                                <li>Report scam accounts on social media platforms</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Giveaway scammers often use bot networks to artificially boost engagement metrics, creating the illusion of legitimacy. They may also create fake transaction records and testimonials from "winners" to convince potential victims. Some sophisticated operations use deepfake technology to create videos of celebrities announcing non-existent giveaways.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wallet Drainers -->
+            <div class="scam-card fade-in delay-1">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                            <i class="fas fa-faucet-drip"></i> Wallet Drainers
+                        </h2>
+                        <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                            Wallet drainers are malicious smart contracts or scripts designed to empty cryptocurrency wallets once given permission to interact with them. These attacks typically involve tricking users into approving transactions that grant the attacker's contract unlimited permission to transfer tokens from the victim's wallet, often disguised as legitimate NFT mints or token swaps.
+                        </p>
+                        <button class="learn-more-btn" data-target="drainer-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="extended-content" id="drainer-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                    <i class="fas fa-file-alt"></i> Case Study: The Monkey Drainer Operation
+                                </h4>
+                                <p class="case-study-content">
+                                    The infamous "Monkey Drainer" operation targeted NFT collectors through a sophisticated multi-platform approach. Victims received direct messages on Discord or Twitter with links to exclusive NFT minting opportunities for popular collections.
+                                </p>
+                                <img src="images/wallet-drainer.png" alt="Wallet Drainer Screenshot" class="case-study-image">
+                                <p class="case-study-content">
+                                    The linked websites appeared legitimate but contained malicious code that requested unlimited token approvals when users attempted to mint. The drainer contracts were programmed to not immediately steal assets—instead waiting several hours before emptying wallets, making it harder to connect the theft to the original approval. The operation stole an estimated $24 million in NFTs and cryptocurrency before being shut down.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                    <li>Always read transaction approval details carefully</li>
+                                    <li>Use a hardware wallet that shows transaction details</li>
+                                    <li>Never approve unlimited token spending—set specific amounts</li>
+                                    <li>Regularly check and revoke unnecessary token approvals</li>
+                                    <li>Use separate wallets for high-value assets and daily transactions</li>
+                                    <li>Consider using approval monitoring tools</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                                <p>Modern wallet drainers use a technique called "SetApprovalForAll" or similar functions to gain complete control over ERC-20 tokens or NFTs. The most sophisticated versions include blockchain monitoring bots that automatically execute transfers as soon as new assets enter the compromised wallet, creating a persistent vulnerability until approvals are explicitly revoked.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Pump and Dump Schemes -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-chart-line"></i> Pump and Dump
+                    </h2>
+                    <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Pump and dump schemes involve artificially inflating a cryptocurrency's price by coordinated buying and false statements about the token's potential, followed by selling at the peak—causing the price to crash, leaving other investors with significant losses. These operations often target low-market-cap tokens with thin trading volumes that are easy to manipulate.
+                    </p>
+                    <button class="learn-more-btn" data-target="pump-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="pump-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Discord Pump Groups
+                            </h4>
+                            <p class="case-study-content">
+                                A network of "investment groups" on Discord with thousands of members operated a sophisticated pump and dump operation. Group administrators would announce upcoming "pump events" where all members were instructed to buy a specific token simultaneously.
+                            </p>
+                            <img src="images/pump-and-dump.jpg" alt="Pump and Dump Chart" class="case-study-image">
+                            <p class="case-study-content">
+                                What most members didn't know was that organizers had pre-purchased large quantities of the token before the announcement. When the coordinated buying drove prices up 300-500%, the organizers would secretly sell their holdings. By the time regular members tried to sell for profit, the price had already collapsed. Investigation revealed that the same core group operated multiple "competing" Discord servers, maximizing their reach.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Avoid tokens being heavily promoted in social media groups</li>
+                                <li>Research project fundamentals beyond price action</li>
+                                <li>Be skeptical of price targets or guaranteed returns</li>
+                                <li>Check token distribution and holder concentration</li>
+                                <li>Avoid FOMO-based investment decisions</li>
+                                <li>Remember: if you're hearing about the "opportunity," you're likely already too late</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Modern pump and dump operations use trading bots to execute precisely timed purchases across multiple wallets, creating the appearance of organic buying pressure. They may also exploit automated market makers (AMMs) on decentralized exchanges by temporarily creating liquidity imbalances that trigger price movements. Some use wash trading to inflate volume statistics and attract attention.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Romance Scams -->
+                <div class="scam-card fade-in">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-heart-broken"></i> Romance Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Cryptocurrency romance scams involve fraudsters creating fake online identities to establish romantic relationships with victims, building trust over time before introducing investment opportunities. Scammers eventually persuade victims to transfer cryptocurrency to fraudulent platforms or wallets, often combining emotional manipulation with promises of significant returns.
+                    </p>
+                    <button class="learn-more-btn" data-target="romance-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="romance-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Pig Butchering Scheme
+                            </h4>
+                            <p class="case-study-content">
+                                A sophisticated operation known as "pig butchering" (sha zhu pan) involved scammers approaching victims through dating apps, social media, or even wrong number texts. After establishing rapport, perpetrators gradually introduced conversations about crypto investments.
+                            </p>
+                            <img src="images/romance-scam.png" alt="Romance Scam Chat" class="case-study-image">
+                            <p class="case-study-content">
+                                The scammer directed the victim to a legitimate-looking investment platform where initial small deposits showed impressive profits, enticing larger investments. When the victim tried to withdraw funds, they encountered "tax" or "fee" requirements. After months of manipulation and multiple deposits totaling $267,000, the victim discovered the platform was fake and the romantic partner vanished. Investigation revealed the operation was run by criminal syndicates using forced labor in Southeast Asia.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Be skeptical of romantic interests who quickly discuss cryptocurrency investments</li>
+                                <li>Research investment platforms independently before depositing any funds</li>
+                                <li>Verify the identity of online romantic partners through video calls</li>
+                                <li>Never send money to someone you haven't met in person</li>
+                                <li>Discuss investment opportunities with trusted financial advisors</li>
+                                <li>Be wary of attractive strangers contacting you through messaging apps</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Romance scammers often create elaborate fake investment platforms with real-time charts using data scraped from legitimate exchanges. These platforms incorporate sophisticated user interfaces and verification processes to appear legitimate. Many use VPNs and encrypted messaging apps to obscure their actual locations while maintaining persistent, long-term communications with multiple victims simultaneously.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recovery Scams -->
+            <div class="scam-card fade-in delay-1">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-life-ring"></i> Recovery Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-easy">EASY</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Recovery scams target victims who have already lost cryptocurrency to previous scams, offering false hope of recovering lost funds. These secondary scammers claim to be specialized recovery agents, ethical hackers, or blockchain experts who can retrieve stolen crypto for an upfront fee or percentage—adding insult to injury by victimizing people twice.
+                    </p>
+                    <button class="learn-more-btn" data-target="recovery-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="recovery-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Blockchain Recovery Service
+                            </h4>
+                            <p class="case-study-content">
+                                After a high-profile DeFi exploit where thousands lost funds, a company calling itself "Blockchain Recovery Solutions" began contacting victims through social media, claiming to have proprietary technology to trace and recover stolen cryptocurrency.
+                            </p>
+                            <img src="images/recovery-scam.jpg" alt="Recovery Scam Website" class="case-study-image">
+                            <p class="case-study-content">
+                                The company showed fabricated "testimonials" from supposed clients who had recovered millions. Victims were asked to pay 10% of their lost funds as an "initiation fee" to begin the recovery process. Those who paid received elaborate technical updates and tracking information for weeks, along with requests for additional fees for "blockchain investigators" and "network acceleration." The scammers collected over $3.2 million in "fees" before disappearing, with victims eventually realizing the tracking information was entirely fictional.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Understand that most cryptocurrency transactions are irreversible by design</li>
+                                <li>Be highly skeptical of anyone claiming to recover lost or stolen crypto</li>
+                                <li>Never pay upfront fees for recovery services</li>
+                                <li>Report scams to legitimate authorities like the FBI's IC3 or local cybercrime units</li>
+                                <li>Verify the credentials of any recovery service through independent sources</li>
+                                <li>Remember: if someone could actually hack blockchain networks, they wouldn't need your money</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Recovery scammers often use public blockchain explorers to create custom interfaces that display technical-looking but meaningless "recovery progress." They may provide falsified transaction hashes and network logs to create an illusion of work being performed. Some use virtual machines to display fake "hacking" screens during video calls with victims to increase perceived legitimacy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smart Contract Exploits -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-file-contract"></i> Smart Contract Exploits
+                        </h2>
+                        <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        Smart contract exploits involve attackers finding and taking advantage of vulnerabilities in the code of decentralized applications (dApps) to drain funds or manipulate token prices. Unlike traditional scams that rely on deceiving users, these attacks exploit coding oversights, logic errors, or design flaws in otherwise legitimate cryptocurrency projects.
+                        </p>
+                    <button class="learn-more-btn" data-target="contract-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="contract-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Flash Loan Attack
+                                </h4>
+                                <p class="case-study-content">
+                                A decentralized lending platform suffered a devastating attack when an exploiter identified a vulnerability in its price oracle implementation. The attacker used a flash loan (a loan taken and repaid within a single transaction) to temporarily manipulate token prices.
+                                </p>
+                            <img src="images/smart-contract-attack.jpg" alt="Smart Contract Attack Diagram" class="case-study-image">
+                                <p class="case-study-content">
+                                By borrowing $20 million in ETH through a flash loan, the attacker manipulated the price of a particular token in the protocol's liquidity pool. This artificial price change allowed them to borrow against inflated collateral values and drain approximately $47 million from the protocol. The entire attack was executed within a single transaction that contained hundreds of nested operations. The protocol's team had to suspend operations, and users lost significant portions of their deposits.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Use DeFi projects that have undergone multiple security audits</li>
+                                <li>Look for protocols with bug bounty programs</li>
+                                <li>Diversify investments across multiple protocols to limit exposure</li>
+                                <li>Check if the protocol has insurance coverage</li>
+                                    <li>Start with small amounts when using new protocols</li>
+                                <li>Monitor project Discord/Telegram for security announcements</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Common smart contract vulnerabilities include reentrancy attacks, integer overflow/underflow, front-running, and oracle manipulation. Advanced exploits often combine multiple vulnerabilities and use complex transaction structures that execute atomically. Many successful attackers simulate their attacks extensively on blockchain forks before executing them on mainnet to ensure profitability and avoid failed transactions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- SIM Swap Attacks -->
+                <div class="scam-card fade-in">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-mobile-alt"></i> SIM Swap Attacks
+                        </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        SIM swap attacks involve scammers convincing mobile carriers to transfer a victim's phone number to a new SIM card they control. Once successful, attackers can bypass SMS-based two-factor authentication, access crypto exchange accounts, reset passwords, and drain cryptocurrency wallets. These attacks combine social engineering, identity theft, and technical exploitation.
+                        </p>
+                    <button class="learn-more-btn" data-target="simswap-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="simswap-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The $24 Million SIM Swap
+                                </h4>
+                                <p class="case-study-content">
+                                A high-profile investor who regularly discussed his crypto portfolio on social media became the target of sophisticated attackers who gathered personal information from his online presence and purchased additional data from dark web marketplaces.
+                                </p>
+                            <img src="images/sim-swap.jpg" alt="SIM Swap Attack Diagram" class="case-study-image">
+                                <p class="case-study-content">
+                                Using social engineering, the attackers convinced a customer service representative at the victim's mobile carrier that they were the legitimate account holder requiring a SIM transfer due to a "lost phone." Within minutes of gaining control of the phone number, they received password reset codes for email accounts, followed by 2FA codes for crypto exchanges. Despite having substantial security measures, the victim lost approximately $24 million in various cryptocurrencies before regaining control of his accounts.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Use authenticator apps instead of SMS for two-factor authentication</li>
+                                <li>Add a PIN or password to your mobile carrier account</li>
+                                <li>Consider using a separate, non-public phone number for high-value accounts</li>
+                                <li>Use hardware security keys when possible</li>
+                                <li>Limit personal information shared on social media</li>
+                                <li>Consider using Google Voice or similar services for 2FA instead of your carrier number</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>SIM swap attackers often target victims by first compromising email accounts through credential stuffing or phishing. They use OSINT (Open Source Intelligence) tools to gather personal data from public records and social media to answer security questions. Some attacks involve insider threats at telecom companies or advanced social engineering techniques that exploit procedural weaknesses in mobile carrier customer service protocols.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Airdrop Phishing -->
+            <div class="scam-card fade-in delay-1">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-parachute-box"></i> Airdrop Phishing
+                    </h2>
+                    <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Airdrop phishing scams use the allure of free cryptocurrency tokens to trick victims into connecting their wallets to malicious websites or approving harmful transactions. These scams typically notify users they've received valuable tokens that require "claiming" through a specific process that ultimately compromises wallet security or drains existing assets.
+                    </p>
+                    <button class="learn-more-btn" data-target="airdrop-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="airdrop-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The "TokenClaimVault" Campaign
+                            </h4>
+                            <p class="case-study-content">
+                                A sophisticated airdrop phishing operation targeted users who had previously interacted with legitimate DeFi protocols. Victims received emails and social media messages congratulating them on receiving an airdrop of "governance tokens" worth thousands of dollars, with a link to "TokenClaimVault" for verification and claiming.
+                            </p>
+                            <img src="images/airdrop-phishing.jpg" alt="Airdrop Phishing Website" class="case-study-image">
+                            <p class="case-study-content">
+                                The professional-looking interface showed users a substantial token amount they could claim, requiring connection of their wallet "to verify ownership." The interface included a fake transaction confirmation showing only the receipt of new tokens. However, the actual transaction being signed granted unlimited approval rights to the attackers' contract. Over 1,200 users fell victim to this campaign, with losses exceeding $16 million in various tokens. Blockchain analysis revealed the stolen funds were quickly laundered through multiple mixer services.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Always verify airdrops through official project channels only</li>
+                                <li>Read transaction details carefully before approving any wallet connection</li>
+                                <li>Use a separate wallet with minimal funds for interacting with new protocols</li>
+                                <li>Be skeptical of airdrops that require immediate action</li>
+                                <li>Check token contract addresses against official sources</li>
+                                <li>Consider using a hardware wallet that displays transaction details</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Modern airdrop phishing attacks use blockchain indexing services to target users based on their on-chain activity and holdings. The malicious smart contracts often implement delayed execution functions, allowing them to drain assets only after a predetermined number of victims have been compromised or after a certain time period. Some attackers create legitimate-looking ERC-20 tokens that appear in victims' wallets but contain malicious approval functions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fake Crypto Mining Operations -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-microchip"></i> Fake Mining Operations
+                    </h2>
+                    <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Fake crypto mining operations advertise opportunities to invest in mining hardware or "cloud mining contracts" with promises of consistent returns from mining activities. These scams often display fabricated mining statistics and false returns to encourage further investment, while no actual mining occurs. Eventually, withdrawals become impossible, and operators disappear with investor funds.
+                    </p>
+                    <button class="learn-more-btn" data-target="mining-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="mining-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: MineMax Global
+                            </h4>
+                            <p class="case-study-content">
+                                MineMax Global claimed to operate large-scale mining facilities in Kazakhstan and Canada, offering investors "mining packages" starting at $500 with promised monthly returns of 8-15%. Their website featured impressive videos of large mining operations and real-time dashboards showing mining rewards accumulating.
+                            </p>
+                            <img src="images/fake-mining.jpg" alt="Fake Mining Dashboard" class="case-study-image">
+                            <p class="case-study-content">
+                                For the first three months, investors could withdraw small amounts to build trust. The company aggressively promoted referral bonuses, creating a pyramid structure where early investors received payments from new investor funds rather than actual mining. After collecting approximately $75 million from over 32,000 investors across 60 countries, the platform suddenly implemented "maintenance upgrades" and froze all withdrawals. Investigation revealed the supposed mining facility videos were stock footage, and no significant mining equipment was ever purchased.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Research profitability of crypto mining before investing</li>
+                                <li>Request verifiable proof of mining equipment ownership</li>
+                                <li>Be skeptical of guaranteed returns (mining profitability fluctuates with market conditions)</li>
+                                <li>Verify the company's legal registration and physical presence</li>
+                                <li>Check for transparency about exact mining locations and operations</li>
+                                <li>Understand that legitimate mining operations have thin profit margins</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Fake mining operations often use real blockchain data from public mining pools to create convincing dashboards that appear to show live mining activity. They may implement complex backend systems that simulate mining rewards based on investment amounts rather than actual hashrate contributions. Some operations purchase small amounts of legitimate mining equipment solely for promotional materials while representing it as a much larger operation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crypto Ponzi Schemes -->
+                <div class="scam-card fade-in">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-pyramid"></i> Crypto Ponzi Schemes
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Cryptocurrency Ponzi schemes present themselves as legitimate investment opportunities with innovative technologies or trading algorithms that generate extraordinary returns. In reality, they use funds from new investors to pay earlier investors, creating the illusion of profitability. These schemes often incorporate complex tokenomics, staking mechanisms, or referral systems to sustain the inflow of new investments.
+                    </p>
+                    <button class="learn-more-btn" data-target="ponzi-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="ponzi-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: AlgoTrade Capital
+                            </h4>
+                            <p class="case-study-content">
+                                AlgoTrade Capital claimed to have developed a proprietary AI-powered trading algorithm that consistently generated 25-30% monthly returns regardless of market conditions. The company issued its own token, ATC, which investors could stake for compounding returns through a sleek platform interface.
+                            </p>
+                            <img src="images/ponzi-scheme.jpg" alt="Ponzi Scheme Platform" class="case-study-image">
+                            <p class="case-study-content">
+                                The operation gained credibility by sponsoring blockchain conferences and securing endorsements from several crypto influencers. To sustain the scheme, they implemented withdrawal limits and incentivized reinvestment through higher "loyalty tiers." After operating for 18 months and accumulating over $450 million from investors, the system collapsed when a market downturn triggered too many withdrawal requests simultaneously. Blockchain forensics uncovered that no algorithmic trading had ever occurred—instead, a complex web of transactions merely recycled investor funds while founders extracted millions to offshore accounts.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Be extremely skeptical of any investment promising consistent high returns</li>
+                                <li>Research team members thoroughly and verify their claimed credentials</li>
+                                <li>Look for transparent explanations of how returns are generated</li>
+                                <li>Be wary of investments that emphasize recruiting new participants</li>
+                                <li>Check if the project has undergone legitimate third-party audits</li>
+                                <li>Be suspicious of pressure to "get in early" or lock funds for long periods</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Modern crypto Ponzi schemes often implement legitimate-looking smart contracts on public blockchains to appear transparent. However, these contracts typically include admin functions that allow operators to control token supply and manipulate staking rewards. Some sophisticated operations conduct real trading with a small portion of funds to generate verifiable transaction records while misrepresenting the scale and profitability of these activities. They may also use layered corporate structures across multiple jurisdictions to complicate legal accountability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- API Manipulation Scams -->
+            <div class="scam-card fade-in">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-code"></i> API Manipulation Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        API manipulation scams involve hackers compromising exchange APIs to execute unauthorized trades, drain wallets, or modify transaction data. These attacks target the programmatic interfaces used by exchanges, trading bots, and wallet services, exploiting vulnerabilities or stolen API keys to siphon funds while appearing as legitimate transactions to both users and security systems.
+                    </p>
+                    <button class="learn-more-btn" data-target="api-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="api-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: TradingView Integration Breach
+                            </h4>
+                            <p class="case-study-content">
+                                A sophisticated group of hackers identified vulnerabilities in a popular trading platform's API integration with multiple cryptocurrency exchanges. They created a seemingly legitimate trading indicator tool that users installed as a plugin to their TradingView accounts.
+                            </p>
+                            <img src="images/api-scam.jpg" alt="API Manipulation Diagram" class="case-study-image">
+                            <p class="case-study-content">
+                                The plugin contained malicious code that harvested API keys from users' exchange accounts. Rather than immediately stealing funds, the hackers monitored trading patterns for weeks, then executed unauthorized trades during high volatility periods to disguise their activities. The attack affected approximately 1,800 traders across three major exchanges, with total losses exceeding $32 million. The breach was only discovered when multiple users reported identical unauthorized trade patterns despite using different trading strategies.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Use API keys with minimal permissions (read-only when possible)</li>
+                                <li>Enable IP address restrictions for API access</li>
+                                <li>Regularly audit and rotate API keys</li>
+                                <li>Use separate API keys for different services/applications</li>
+                                <li>Never share API keys with third-party services you don't fully trust</li>
+                                <li>Monitor your account for unusual trading patterns</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>API manipulation attacks often begin with social engineering to gain initial access to API credentials. Advanced attacks may involve WebSocket injection, MITM (Man-in-the-Middle) attacks on API endpoints, or exploitation of race conditions in trading engine code. Some hackers create legitimate-looking tools with backdoors specifically designed to extract API keys with withdrawal permissions, which may remain dormant for extended periods before being activated.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clipboard Hijacking -->
+            <div class="scam-card fade-in delay-1">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-clipboard"></i> Clipboard Hijacking
+                        </h2>
+                        <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        Clipboard hijacking malware monitors a victim's clipboard for cryptocurrency wallet addresses and replaces them with the attacker's wallet address when pasted. Since most users don't verify the entire address after pasting, they unknowingly send their crypto to the attacker. This type of malware operates silently in the background and can remain undetected for long periods.
+                        </p>
+                    <button class="learn-more-btn" data-target="clipboard-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="clipboard-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: CryptoClipWatcher Malware Campaign
+                                </h4>
+                                <p class="case-study-content">
+                                A widespread malware called CryptoClipWatcher was distributed through compromised software downloads and malicious browser extensions. The malware maintained a database of over 4,000 attacker-controlled wallet addresses across multiple cryptocurrencies.
+                                </p>
+                            <img src="images/clipboard-hijack.jpg" alt="Clipboard Hijacking Malware" class="case-study-image">
+                                <p class="case-study-content">
+                                When infected, the malware would scan clipboard contents in real-time for patterns matching cryptocurrency addresses. When detected, it would instantly replace the legitimate address with one from its database that had similar starting characters, making the swap less noticeable. The campaign affected over 23,000 victims across 32 countries, with estimated losses of $18 million in Bitcoin, Ethereum, and other cryptocurrencies. Many victims only discovered the attack after transactions were already confirmed and irreversible.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Always verify the entire address after pasting (not just the first and last few characters)</li>
+                                <li>Use a hardware wallet that displays and requires verification of the receiving address</li>
+                                <li>Send a small test transaction before large transfers</li>
+                                <li>Use trusted address book features in wallets rather than copying and pasting</li>
+                                <li>Regularly scan your computer for malware with reputable security software</li>
+                                <li>Consider using a dedicated device for cryptocurrency transactions</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Clipboard hijacking malware typically uses advanced pattern matching algorithms to identify over 40 different cryptocurrency address formats. Some variants implement logic to generate addresses with matching prefixes (address spoofing) to reduce detection. The most sophisticated versions can also monitor and modify QR code images in the clipboard, allowing them to attack transactions initiated through QR code scanning. Most operate with minimal system resource usage to avoid detection by performance monitoring tools.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Fake ICO Whitepapers -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-file-pdf"></i> Fake ICO Whitepapers
+                    </h2>
+                    <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Fake ICO (Initial Coin Offering) whitepaper scams involve creating elaborate technical documents for non-existent cryptocurrency projects. These whitepapers often contain plagiarized content from legitimate projects, technical jargon without substance, and unrealistic promises of revolutionary technology. They are designed to appear professional and legitimate to attract investors before the fraudsters disappear with the funds.
+                    </p>
+                    <button class="learn-more-btn" data-target="whitepaper-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="whitepaper-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: QuantumChain's Fictitious Technology
+                            </h4>
+                            <p class="case-study-content">
+                                QuantumChain presented itself as a revolutionary layer-1 blockchain claiming to solve the blockchain trilemma (security, scalability, and decentralization) through a proprietary "quantum-resistant consensus mechanism" detailed in an impressive 87-page whitepaper.
+                            </p>
+                            <img src="images/fake-whitepaper.jpg" alt="Fake ICO Whitepaper" class="case-study-image">
+                            <p class="case-study-content">
+                                The whitepaper featured complex mathematical formulas, diagrams of their alleged architecture, and citations to respected academic papers. Technical experts later identified sections directly copied from Ethereum, Polkadot, and Avalanche documentation, with meaningless technical jargon inserted throughout. The project raised $28 million in their ICO before disappearing. Investigation revealed the team photos were AI-generated, and their claimed partnerships with academic institutions were fabricated. The GitHub repository contained only placeholder code with no actual implementation of the features promised.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Have technical content reviewed by experts in blockchain technology</li>
+                                <li>Search for plagiarism by checking phrases against other project documentation</li>
+                                <li>Verify team members' identities and backgrounds independently</li>
+                                <li>Examine the project's GitHub repository for actual development activity</li>
+                                <li>Check if cryptographic proofs or technical claims have peer-reviewed publications</li>
+                                <li>Verify claimed partnerships with the partner organizations directly</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Fraudulent whitepapers often contain technically impossible claims that violate fundamental principles of distributed systems or cryptography. Common red flags include vague references to proprietary algorithms without mathematical specifications, inconsistencies in technical architecture diagrams, and misuse of technical terminology. Some scammers leverage emerging fields like quantum computing or AI where fewer people can evaluate technical claims, inserting buzzwords like "quantum-secured" or "AI-optimized" without explaining actual implementation details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liquidity Mining Traps -->
+            <div class="scam-card fade-in">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-water"></i> Liquidity Mining Traps
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Liquidity mining traps lure investors to provide liquidity to fraudulent DeFi protocols by promising extremely high Annual Percentage Yields (APYs). Victims deposit token pairs into liquidity pools and receive LP tokens representing their share. The scammers then exploit hidden backdoors in smart contracts to drain the pools or manipulate LP token values, leaving investors with worthless assets despite initially legitimate-looking operations.
+                    </p>
+                    <button class="learn-more-btn" data-target="liquidity-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="liquidity-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: YieldHarvest Protocol Exploit
+                            </h4>
+                            <p class="case-study-content">
+                                YieldHarvest launched as a new DeFi yield aggregator on the Binance Smart Chain, offering 300-500% APY for providing liquidity to various token pairs. The protocol appeared legitimate with audited contracts (though the audit was later found to be falsified) and a functioning user interface.
+                            </p>
+                            <img src="images/liquidity-trap.jpg" alt="Liquidity Mining Trap Interface" class="case-study-image">
+                            <p class="case-study-content">
+                                For the first three weeks, the platform functioned normally, allowing deposits, withdrawals, and distributing rewards through their governance token. As liquidity grew to over $34 million, the developers activated a hidden timelock function that allowed them to modify core protocol contracts. The modified contracts redirected all funds to external wallets within minutes. Analysis revealed that the smart contracts contained obfuscated code that was designed to bypass standard auditing tools, with permission controls that appeared secure but contained exploitable logical fallbacks that activated after a specific time period.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Be extremely skeptical of protocols offering APYs significantly higher than established platforms</li>
+                                <li>Verify smart contract audits directly with the auditing company</li>
+                                <li>Check that liquidity is time-locked with reputable mechanisms</li>
+                                <li>Investigate team background and project history thoroughly</li>
+                                <li>Start with small amounts and test withdrawal functionality</li>
+                                <li>Use monitoring tools that alert for contract changes or suspicious outflows</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated liquidity mining scams employ complex techniques like flash loan governance attacks, hidden admin keys, or proxy contract upgrades to drain pools. Some implementations use decentralized governance as a facade while maintaining backdoor access through multi-signature controls with fake addresses all controlled by the same entity. Others implement artificial price manipulation through sandwich attacks around large liquidity events to extract value gradually before the final exit scam. Many protocols incentivize large deposits by offering bonus rewards that increase with deposit size, specifically targeting whale investors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Account Takeovers -->
+                <div class="scam-card fade-in delay-1">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-users-cog"></i> Social Media Account Takeovers
+                    </h2>
+                    <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        In social media account takeover scams, attackers compromise official social media accounts of crypto projects, influencers, or exchanges. Using these trusted accounts, they post fake announcements about token launches, airdrops, or urgent security updates with malicious links. These attacks are particularly effective because they come from verified, legitimate sources that users already trust and follow.
+                    </p>
+                    <button class="learn-more-btn" data-target="socialtakeover-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="socialtakeover-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The DeFi Protocol Twitter Compromise
+                            </h4>
+                            <p class="case-study-content">
+                                A major DeFi lending protocol with over 400,000 Twitter followers had their official Twitter account compromised through a sophisticated SIM swapping attack targeting a team member with account access.
+                            </p>
+                            <img src="images/account-takeover.jpg" alt="Social Media Account Takeover" class="case-study-image">
+                            <p class="case-study-content">
+                                The attackers immediately pinned a tweet announcing an "emergency security upgrade" requiring users to connect their wallets to a provided link within 24 hours to prevent fund loss. The compromised account responded to user questions in the comments, creating additional legitimacy. The announcement coincided with actual protocol upgrades mentioned in previous legitimate communications. Over 3,800 users connected their wallets to the malicious site, resulting in approximately $7.2 million in stolen funds before the team regained control of the account and posted warnings. The sophisticated attack was part of a coordinated campaign that targeted multiple crypto projects simultaneously.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Verify announcements across multiple official channels before taking action</li>
+                                <li>Never connect your wallet through links in social media posts, even from verified accounts</li>
+                                <li>Check the project's official website directly by manually typing the URL</li>
+                                <li>Be wary of urgent security announcements creating time pressure</li>
+                                <li>Look for unusual posting patterns or communication styles in official accounts</li>
+                                <li>Set up transaction notifications and security delays for large withdrawals</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Social media account takeovers typically begin with reconnaissance to identify team members with posting access, followed by targeted phishing, credential theft, or SIM swapping attacks. Advanced attackers monitor project development schedules to time their attacks during legitimate update periods when users expect changes. Some compromises involve insider threats from disgruntled employees or contractors with account access. Sophisticated operations may simultaneously compromise multiple social channels and also redirect DNS settings to create consistent experiences across platforms, making the attacks harder to identify.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fake DApp Browser Extensions -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-puzzle-piece"></i> Fake DApp Browser Extensions
+                        </h2>
+                        <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        Fake DApp browser extension scams involve counterfeit versions of popular Web3 extensions like MetaMask or Trust Wallet distributed through browser extension stores. These malicious extensions function identically to legitimate ones but contain hidden code that steals private keys, seed phrases, or intercepts transactions. Some even replace receiving addresses during transactions while displaying the correct address to the user.
+                        </p>
+                    <button class="learn-more-btn" data-target="extension-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="extension-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The MetaConnect Impersonation
+                                </h4>
+                                <p class="case-study-content">
+                                A sophisticated team of attackers created "MetaConnect," a near-perfect clone of the popular MetaMask extension. They used paid advertising to position their malicious extension at the top of search results for "metamask wallet extension" on Google and within browser extension stores.
+                                </p>
+                            <img src="images/fake-extension.jpg" alt="Fake Browser Extension" class="case-study-image">
+                                <p class="case-study-content">
+                                The extension had a professionally designed interface identical to the original, with full functionality for creating wallets, importing accounts, and connecting to dApps. However, it contained obfuscated code that transmitted seed phrases and private keys to attacker-controlled servers upon creation or import. Victims would initially be able to use the wallet normally, but after a delay of 2-3 weeks (to avoid immediate correlation), the extension would drain their funds during a legitimate transaction. The attack affected over 12,000 users before being detected and removed from extension stores, with estimated losses of $14.5 million in various cryptocurrencies.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Only download extensions directly from official project websites, not search results</li>
+                                <li>Verify extension developer names and user counts before installing</li>
+                                <li>Check extension permissions and be suspicious of unnecessary access requests</li>
+                                <li>Verify the extension's last update date and review history</li>
+                                <li>Use hardware wallets for additional security when possible</li>
+                                <li>Regularly check official communication channels for security alerts</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated fake extensions employ various techniques to evade detection, including delayed activation of malicious code, obfuscation, and polymorphic code that changes its signature. Some manipulate the DOM to show users different transaction details than what is actually being signed. Advanced variants implement WebSocket connections to command and control servers that can remotely trigger exploits when high-value targets are identified. The most dangerous versions use differential targeting based on wallet balance, analyzing transaction history to selectively target only users with significant holdings.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Counterfeit Hardware Wallets -->
+            <div class="scam-card fade-in">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-microchip"></i> Counterfeit Hardware Wallets
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Counterfeit hardware wallet scams involve selling fake versions of popular cryptocurrency hardware wallets like Ledger or Trezor. These counterfeits look nearly identical to genuine devices but contain modified firmware that steals private keys or creates predictable key generation patterns known to the attackers. Some are even shipped with preconfigured seed phrases that attackers can later use to drain funds.
+                    </p>
+                    <button class="learn-more-btn" data-target="hardwarewallet-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="hardwarewallet-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Pre-Seeded Device Scam
+                            </h4>
+                            <p class="case-study-content">
+                                A sophisticated operation sold counterfeit versions of a popular hardware wallet through third-party retailers and discounted online marketplaces. The devices were perfect replicas of the original, including packaging and security seals that appeared untampered.
+                            </p>
+                            <img src="images/fake-hardware.jpg" alt="Counterfeit Hardware Wallet" class="case-study-image">
+                            <p class="case-study-content">
+                                When users initialized these devices, they appeared to generate new random seed phrases normally. However, the counterfeit devices were presenting one of several thousand pre-generated seed phrases already known to the attackers. The modified firmware also contained a backdoor that would transmit any newly imported private keys. Victims would use the wallet normally for months before the attackers simultaneously drained all affected wallets during a holiday weekend to minimize real-time detection. The scam affected approximately 6,500 users worldwide with losses totaling $28 million. Blockchain analysis revealed the stolen funds were laundered through multiple mixing services and privacy-focused cryptocurrencies.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Only purchase hardware wallets directly from the manufacturer's official website</li>
+                                <li>Verify device authenticity using the manufacturer's verification tools</li>
+                                <li>Check for tampering with packaging and security seals</li>
+                                <li>Never use a device that comes with a pre-written seed phrase</li>
+                                <li>Update firmware immediately after receiving the device</li>
+                                <li>Consider adding a strong passphrase (25th word) to your seed</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated counterfeit hardware wallets employ various attack vectors, including compromised random number generators that produce deterministic seeds, modified secure elements that leak private keys, and firmware backdoors that can be remotely activated. Some counterfeits include hardware implants that transmit key material over Bluetooth or WiFi despite appearing disconnected. Advanced attacks may target the supply chain itself, compromising devices before they reach legitimate retailers. The most dangerous counterfeits pass all standard verification checks and only reveal their true nature when specific triggering conditions are met.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wash Trading NFT Scams -->
+            <div class="scam-card fade-in delay-1">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-paint-brush"></i> Wash Trading NFT Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Wash trading NFT scams involve artificially inflating the perceived value and demand for NFTs through self-dealing. Scammers repeatedly sell NFTs between wallets they control at increasingly higher prices to create a false history of appreciation and trading activity. When the manipulated NFTs appear valuable based on transaction history, they're sold to unwitting buyers who later discover the assets have little to no actual market demand.
+                    </p>
+                    <button class="learn-more-btn" data-target="washtrading-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="washtrading-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The CryptoArtists Collective
+                            </h4>
+                            <p class="case-study-content">
+                                A group calling themselves the "CryptoArtists Collective" launched a series of 10,000 generative art NFTs with modest initial pricing. Behind the scenes, the team controlled dozens of wallet addresses that began purchasing and trading the NFTs between themselves.
+                            </p>
+                            <img src="images/nft-wash-trading.jpg" alt="NFT Wash Trading Schema" class="case-study-image">
+                            <p class="case-study-content">
+                                Over three months, these controlled wallets executed more than 1,400 trades, steadily increasing prices from 0.1 ETH to over 8 ETH per NFT. The artificial activity attracted attention, with the collection appearing in "trending" sections of major NFT marketplaces. The team leveraged this visibility to secure collaborations with smaller legitimate projects and paid several influencers to promote the collection. When prices peaked, they sold hundreds of NFTs to genuine buyers at inflated prices totaling approximately 2,800 ETH (roughly $4.9 million at the time). Shortly after, they abandoned the project and ceased all development, causing prices to collapse by over 98%. Blockchain analysis later revealed that 85% of the trading volume came from wallets connected to the creators.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Analyze trading patterns and look for suspicious transaction histories</li>
+                                <li>Research the actual community size vs. trading volume (discord members, social engagement)</li>
+                                <li>Use blockchain analytics tools to check for connected wallets</li>
+                                <li>Be skeptical of collections that suddenly appear in trending lists</li>
+                                <li>Check if trading is concentrated among a small number of wallets</li>
+                                <li>Verify the team's background and previous projects</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated wash trading operations use advanced techniques to obscure connections between controlled wallets, including multiple layers of transactions through intermediary addresses, using different IP addresses, and timing transactions to mimic organic trading patterns. Some operations leverage flash loans to fund trading without significant capital requirements. The most advanced schemes distribute trading across multiple NFT marketplaces to create the appearance of broad market interest. Some manipulators also create artificial bidding wars between their controlled accounts to suggest competitive demand and exploit marketplace algorithms that highlight active collections.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impersonation Support Scams -->
+                <div class="scam-card fade-in delay-2">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-headset"></i> Impersonation Support Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-easy">EASY</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Impersonation support scams involve fraudsters posing as customer service representatives from legitimate cryptocurrency exchanges, wallet providers, or DeFi protocols. They target users who post about technical issues on social media or forums, offering to "help" resolve problems. These fake support agents direct victims to malicious websites or request sensitive information like private keys, seed phrases, or remote access to their devices.
+                    </p>
+                    <button class="learn-more-btn" data-target="fakesupport-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="fakesupport-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Discord Support Infiltration
+                                </h4>
+                                <p class="case-study-content">
+                                A user experiencing difficulties withdrawing funds from a major DeFi protocol posted about their issue
+                                </p>
+                            <img src="images/fakesupport.jpg" alt="Impersonation Support Scam" class="case-study-image">
+                                <p class="case-study-content">
+                                The scammer directed the victim to a fake support website, where they were asked to pay a fee to recover their funds. The victim paid the fee, but the funds were not recovered.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Verify announcements across multiple official channels before taking action</li>
+                                <li>Never connect your wallet through links in social media posts, even from verified accounts</li>
+                                <li>Check the project's official website directly by manually typing the URL</li>
+                                <li>Be wary of urgent security announcements creating time pressure</li>
+                                <li>Look for unusual posting patterns or communication styles in official accounts</li>
+                                <li>Set up transaction notifications and security delays for large withdrawals</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Impersonation support scams typically begin with social engineering to gain initial access to account credentials, followed by targeted phishing, credential theft, or SIM swapping attacks. Advanced attackers monitor project development schedules to time their attacks during legitimate update periods when users expect changes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- API Manipulation Scams -->
+            <div class="scam-card fade-in">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-code"></i> API Manipulation Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        API manipulation scams involve hackers compromising exchange APIs to execute unauthorized trades, drain wallets, or modify transaction data. These attacks target the programmatic interfaces used by exchanges, trading bots, and wallet services, exploiting vulnerabilities or stolen API keys to siphon funds while appearing as legitimate transactions to both users and security systems.
+                    </p>
+                    <button class="learn-more-btn" data-target="api-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="api-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: TradingView Integration Breach
+                            </h4>
+                            <p class="case-study-content">
+                                A sophisticated group of hackers identified vulnerabilities in a popular trading platform's API integration with multiple cryptocurrency exchanges. They created a seemingly legitimate trading indicator tool that users installed as a plugin to their TradingView accounts.
+                            </p>
+                            <img src="images/api-scam.jpg" alt="API Manipulation Diagram" class="case-study-image">
+                            <p class="case-study-content">
+                                The plugin contained malicious code that harvested API keys from users' exchange accounts. Rather than immediately stealing funds, the hackers monitored trading patterns for weeks, then executed unauthorized trades during high volatility periods to disguise their activities. The attack affected approximately 1,800 traders across three major exchanges, with total losses exceeding $32 million. The breach was only discovered when multiple users reported identical unauthorized trade patterns despite using different trading strategies.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Use API keys with minimal permissions (read-only when possible)</li>
+                                <li>Enable IP address restrictions for API access</li>
+                                <li>Regularly audit and rotate API keys</li>
+                                <li>Use separate API keys for different services/applications</li>
+                                <li>Never share API keys with third-party services you don't fully trust</li>
+                                <li>Monitor your account for unusual trading patterns</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>API manipulation attacks often begin with social engineering to gain initial access to API credentials. Advanced attacks may involve WebSocket injection, MITM (Man-in-the-Middle) attacks on API endpoints, or exploitation of race conditions in trading engine code. Some hackers create legitimate-looking tools with backdoors specifically designed to extract API keys with withdrawal permissions, which may remain dormant for extended periods before being activated.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clipboard Hijacking -->
+                <div class="scam-card fade-in delay-1">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-clipboard"></i> Clipboard Hijacking
+                        </h2>
+                        <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        Clipboard hijacking malware monitors a victim's clipboard for cryptocurrency wallet addresses and replaces them with the attacker's wallet address when pasted. Since most users don't verify the entire address after pasting, they unknowingly send their crypto to the attacker. This type of malware operates silently in the background and can remain undetected for long periods.
+                        </p>
+                    <button class="learn-more-btn" data-target="clipboard-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="clipboard-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: CryptoClipWatcher Malware Campaign
+                                </h4>
+                                <p class="case-study-content">
+                                A widespread malware called CryptoClipWatcher was distributed through compromised software downloads and malicious browser extensions. The malware maintained a database of over 4,000 attacker-controlled wallet addresses across multiple cryptocurrencies.
+                                </p>
+                            <img src="images/clipboard-hijack.jpg" alt="Clipboard Hijacking Malware" class="case-study-image">
+                                <p class="case-study-content">
+                                When infected, the malware would scan clipboard contents in real-time for patterns matching cryptocurrency addresses. When detected, it would instantly replace the legitimate address with one from its database that had similar starting characters, making the swap less noticeable. The campaign affected over 23,000 victims across 32 countries, with estimated losses of $18 million in Bitcoin, Ethereum, and other cryptocurrencies. Many victims only discovered the attack after transactions were already confirmed and irreversible.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Always verify the entire address after pasting (not just the first and last few characters)</li>
+                                <li>Use a hardware wallet that displays and requires verification of the receiving address</li>
+                                <li>Send a small test transaction before large transfers</li>
+                                <li>Use trusted address book features in wallets rather than copying and pasting</li>
+                                <li>Regularly scan your computer for malware with reputable security software</li>
+                                <li>Consider using a dedicated device for cryptocurrency transactions</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Clipboard hijacking malware typically uses advanced pattern matching algorithms to identify over 40 different cryptocurrency address formats. Some variants implement logic to generate addresses with matching prefixes (address spoofing) to reduce detection. The most sophisticated versions can also monitor and modify QR code images in the clipboard, allowing them to attack transactions initiated through QR code scanning. Most operate with minimal system resource usage to avoid detection by performance monitoring tools.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Fake ICO Whitepapers -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-file-pdf"></i> Fake ICO Whitepapers
+                    </h2>
+                    <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Fake ICO (Initial Coin Offering) whitepaper scams involve creating elaborate technical documents for non-existent cryptocurrency projects. These whitepapers often contain plagiarized content from legitimate projects, technical jargon without substance, and unrealistic promises of revolutionary technology. They are designed to appear professional and legitimate to attract investors before the fraudsters disappear with the funds.
+                    </p>
+                    <button class="learn-more-btn" data-target="whitepaper-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="whitepaper-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: QuantumChain's Fictitious Technology
+                            </h4>
+                            <p class="case-study-content">
+                                QuantumChain presented itself as a revolutionary layer-1 blockchain claiming to solve the blockchain trilemma (security, scalability, and decentralization) through a proprietary "quantum-resistant consensus mechanism" detailed in an impressive 87-page whitepaper.
+                            </p>
+                            <img src="images/fake-whitepaper.jpg" alt="Fake ICO Whitepaper" class="case-study-image">
+                            <p class="case-study-content">
+                                The whitepaper featured complex mathematical formulas, diagrams of their alleged architecture, and citations to respected academic papers. Technical experts later identified sections directly copied from Ethereum, Polkadot, and Avalanche documentation, with meaningless technical jargon inserted throughout. The project raised $28 million in their ICO before disappearing. Investigation revealed the team photos were AI-generated, and their claimed partnerships with academic institutions were fabricated. The GitHub repository contained only placeholder code with no actual implementation of the features promised.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Have technical content reviewed by experts in blockchain technology</li>
+                                <li>Search for plagiarism by checking phrases against other project documentation</li>
+                                <li>Verify team members' identities and backgrounds independently</li>
+                                <li>Examine the project's GitHub repository for actual development activity</li>
+                                <li>Check if cryptographic proofs or technical claims have peer-reviewed publications</li>
+                                <li>Verify claimed partnerships with the partner organizations directly</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Fraudulent whitepapers often contain technically impossible claims that violate fundamental principles of distributed systems or cryptography. Common red flags include vague references to proprietary algorithms without mathematical specifications, inconsistencies in technical architecture diagrams, and misuse of technical terminology. Some scammers leverage emerging fields like quantum computing or AI where fewer people can evaluate technical claims, inserting buzzwords like "quantum-secured" or "AI-optimized" without explaining actual implementation details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liquidity Mining Traps -->
+                <div class="scam-card fade-in">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-water"></i> Liquidity Mining Traps
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Liquidity mining traps lure investors to provide liquidity to fraudulent DeFi protocols by promising extremely high Annual Percentage Yields (APYs). Victims deposit token pairs into liquidity pools and receive LP tokens representing their share. The scammers then exploit hidden backdoors in smart contracts to drain the pools or manipulate LP token values, leaving investors with worthless assets despite initially legitimate-looking operations.
+                    </p>
+                    <button class="learn-more-btn" data-target="liquidity-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="liquidity-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: YieldHarvest Protocol Exploit
+                            </h4>
+                            <p class="case-study-content">
+                                YieldHarvest launched as a new DeFi yield aggregator on the Binance Smart Chain, offering 300-500% APY for providing liquidity to various token pairs. The protocol appeared legitimate with audited contracts (though the audit was later found to be falsified) and a functioning user interface.
+                            </p>
+                            <img src="images/liquidity-trap.jpg" alt="Liquidity Mining Trap Interface" class="case-study-image">
+                            <p class="case-study-content">
+                                For the first three weeks, the platform functioned normally, allowing deposits, withdrawals, and distributing rewards through their governance token. As liquidity grew to over $34 million, the developers activated a hidden timelock function that allowed them to modify core protocol contracts. The modified contracts redirected all funds to external wallets within minutes. Analysis revealed that the smart contracts contained obfuscated code that was designed to bypass standard auditing tools, with permission controls that appeared secure but contained exploitable logical fallbacks that activated after a specific time period.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Be extremely skeptical of protocols offering APYs significantly higher than established platforms</li>
+                                <li>Verify smart contract audits directly with the auditing company</li>
+                                <li>Check that liquidity is time-locked with reputable mechanisms</li>
+                                <li>Investigate team background and project history thoroughly</li>
+                                <li>Start with small amounts and test withdrawal functionality</li>
+                                <li>Use monitoring tools that alert for contract changes or suspicious outflows</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated liquidity mining scams employ complex techniques like flash loan governance attacks, hidden admin keys, or proxy contract upgrades to drain pools. Some implementations use decentralized governance as a facade while maintaining backdoor access through multi-signature controls with fake addresses all controlled by the same entity. Others implement artificial price manipulation through sandwich attacks around large liquidity events to extract value gradually before the final exit scam. Many protocols incentivize large deposits by offering bonus rewards that increase with deposit size, specifically targeting whale investors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Account Takeovers -->
+            <div class="scam-card fade-in delay-1">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-users-cog"></i> Social Media Account Takeovers
+                        </h2>
+                        <span class="difficulty-badge difficulty-moderate">MODERATE</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        In social media account takeover scams, attackers compromise official social media accounts of crypto projects, influencers, or exchanges. Using these trusted accounts, they post fake announcements about token launches, airdrops, or urgent security updates with malicious links. These attacks are particularly effective because they come from verified, legitimate sources that users already trust and follow.
+                        </p>
+                    <button class="learn-more-btn" data-target="socialtakeover-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="socialtakeover-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The DeFi Protocol Twitter Compromise
+                                </h4>
+                                <p class="case-study-content">
+                                A major DeFi lending protocol with over 400,000 Twitter followers had their official Twitter account compromised through a sophisticated SIM swapping attack targeting a team member with account access.
+                                </p>
+                            <img src="images/account-takeover.jpg" alt="Social Media Account Takeover" class="case-study-image">
+                                <p class="case-study-content">
+                                The attackers immediately pinned a tweet announcing an "emergency security upgrade" requiring users to connect their wallets to a provided link within 24 hours to prevent fund loss. The compromised account responded to user questions in the comments, creating additional legitimacy. The announcement coincided with actual protocol upgrades mentioned in previous legitimate communications. Over 3,800 users connected their wallets to the malicious site, resulting in approximately $7.2 million in stolen funds before the team regained control of the account and posted warnings. The sophisticated attack was part of a coordinated campaign that targeted multiple crypto projects simultaneously.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Verify announcements across multiple official channels before taking action</li>
+                                <li>Never connect your wallet through links in social media posts, even from verified accounts</li>
+                                <li>Check the project's official website directly by manually typing the URL</li>
+                                <li>Be wary of urgent security announcements creating time pressure</li>
+                                <li>Look for unusual posting patterns or communication styles in official accounts</li>
+                                <li>Set up transaction notifications and security delays for large withdrawals</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Social media account takeovers typically begin with reconnaissance to identify team members with posting access, followed by targeted phishing, credential theft, or SIM swapping attacks. Advanced attackers monitor project development schedules to time their attacks during legitimate update periods when users expect changes. Some compromises involve insider threats from disgruntled employees or contractors with account access. Sophisticated operations may simultaneously compromise multiple social channels and also redirect DNS settings to create consistent experiences across platforms, making the attacks harder to identify.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Fake DApp Browser Extensions -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-puzzle-piece"></i> Fake DApp Browser Extensions
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Fake DApp browser extension scams involve counterfeit versions of popular Web3 extensions like MetaMask or Trust Wallet distributed through browser extension stores. These malicious extensions function identically to legitimate ones but contain hidden code that steals private keys, seed phrases, or intercepts transactions. Some even replace receiving addresses during transactions while displaying the correct address to the user.
+                    </p>
+                    <button class="learn-more-btn" data-target="extension-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="extension-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The MetaConnect Impersonation
+                            </h4>
+                            <p class="case-study-content">
+                                A sophisticated team of attackers created "MetaConnect," a near-perfect clone of the popular MetaMask extension. They used paid advertising to position their malicious extension at the top of search results for "metamask wallet extension" on Google and within browser extension stores.
+                            </p>
+                            <img src="images/fake-extension.jpg" alt="Fake Browser Extension" class="case-study-image">
+                            <p class="case-study-content">
+                                The extension had a professionally designed interface identical to the original, with full functionality for creating wallets, importing accounts, and connecting to dApps. However, it contained obfuscated code that transmitted seed phrases and private keys to attacker-controlled servers upon creation or import. Victims would initially be able to use the wallet normally, but after a delay of 2-3 weeks (to avoid immediate correlation), the extension would drain their funds during a legitimate transaction. The attack affected over 12,000 users before being detected and removed from extension stores, with estimated losses of $14.5 million in various cryptocurrencies.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Only download extensions directly from official project websites, not search results</li>
+                                <li>Verify extension developer names and user counts before installing</li>
+                                <li>Check extension permissions and be suspicious of unnecessary access requests</li>
+                                <li>Verify the extension's last update date and review history</li>
+                                <li>Use hardware wallets for additional security when possible</li>
+                                <li>Regularly check official communication channels for security alerts</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated fake extensions employ various techniques to evade detection, including delayed activation of malicious code, obfuscation, and polymorphic code that changes its signature. Some manipulate the DOM to show users different transaction details than what is actually being signed. Advanced variants implement WebSocket connections to command and control servers that can remotely trigger exploits when high-value targets are identified. The most dangerous versions use differential targeting based on wallet balance, analyzing transaction history to selectively target only users with significant holdings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Counterfeit Hardware Wallets -->
+            <div class="scam-card fade-in">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-microchip"></i> Counterfeit Hardware Wallets
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Counterfeit hardware wallet scams involve selling fake versions of popular cryptocurrency hardware wallets like Ledger or Trezor. These counterfeits look nearly identical to genuine devices but contain modified firmware that steals private keys or creates predictable key generation patterns known to the attackers. Some are even shipped with preconfigured seed phrases that attackers can later use to drain funds.
+                    </p>
+                    <button class="learn-more-btn" data-target="hardwarewallet-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="hardwarewallet-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Pre-Seeded Device Scam
+                            </h4>
+                            <p class="case-study-content">
+                                A sophisticated operation sold counterfeit versions of a popular hardware wallet through third-party retailers and discounted online marketplaces. The devices were perfect replicas of the original, including packaging and security seals that appeared untampered.
+                            </p>
+                            <img src="images/fake-hardware.jpg" alt="Counterfeit Hardware Wallet" class="case-study-image">
+                            <p class="case-study-content">
+                                When users initialized these devices, they appeared to generate new random seed phrases normally. However, the counterfeit devices were presenting one of several thousand pre-generated seed phrases already known to the attackers. The modified firmware also contained a backdoor that would transmit any newly imported private keys. Victims would use the wallet normally for months before the attackers simultaneously drained all affected wallets during a holiday weekend to minimize real-time detection. The scam affected approximately 6,500 users worldwide with losses totaling $28 million. Blockchain analysis revealed the stolen funds were laundered through multiple mixing services and privacy-focused cryptocurrencies.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Only purchase hardware wallets directly from the manufacturer's official website</li>
+                                <li>Verify device authenticity using the manufacturer's verification tools</li>
+                                <li>Check for tampering with packaging and security seals</li>
+                                <li>Never use a device that comes with a pre-written seed phrase</li>
+                                <li>Update firmware immediately after receiving the device</li>
+                                <li>Consider adding a strong passphrase (25th word) to your seed</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated counterfeit hardware wallets employ various attack vectors, including compromised random number generators that produce deterministic seeds, modified secure elements that leak private keys, and firmware backdoors that can be remotely activated. Some counterfeits include hardware implants that transmit key material over Bluetooth or WiFi despite appearing disconnected. Advanced attacks may target the supply chain itself, compromising devices before they reach legitimate retailers. The most dangerous counterfeits pass all standard verification checks and only reveal their true nature when specific triggering conditions are met.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wash Trading NFT Scams -->
+                <div class="scam-card fade-in delay-1">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-paint-brush"></i> Wash Trading NFT Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Wash trading NFT scams involve artificially inflating the perceived value and demand for NFTs through self-dealing. Scammers repeatedly sell NFTs between wallets they control at increasingly higher prices to create a false history of appreciation and trading activity. When the manipulated NFTs appear valuable based on transaction history, they're sold to unwitting buyers who later discover the assets have little to no actual market demand.
+                    </p>
+                    <button class="learn-more-btn" data-target="washtrading-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="washtrading-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The CryptoArtists Collective
+                            </h4>
+                            <p class="case-study-content">
+                                A group calling themselves the "CryptoArtists Collective" launched a series of 10,000 generative art NFTs with modest initial pricing. Behind the scenes, the team controlled dozens of wallet addresses that began purchasing and trading the NFTs between themselves.
+                            </p>
+                            <img src="images/nft-wash-trading.jpg" alt="NFT Wash Trading Schema" class="case-study-image">
+                            <p class="case-study-content">
+                                Over three months, these controlled wallets executed more than 1,400 trades, steadily increasing prices from 0.1 ETH to over 8 ETH per NFT. The artificial activity attracted attention, with the collection appearing in "trending" sections of major NFT marketplaces. The team leveraged this visibility to secure collaborations with smaller legitimate projects and paid several influencers to promote the collection. When prices peaked, they sold hundreds of NFTs to genuine buyers at inflated prices totaling approximately 2,800 ETH (roughly $4.9 million at the time). Shortly after, they abandoned the project and ceased all development, causing prices to collapse by over 98%. Blockchain analysis later revealed that 85% of the trading volume came from wallets connected to the creators.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Analyze trading patterns and look for suspicious transaction histories</li>
+                                <li>Research the actual community size vs. trading volume (discord members, social engagement)</li>
+                                <li>Use blockchain analytics tools to check for connected wallets</li>
+                                <li>Be skeptical of collections that suddenly appear in trending lists</li>
+                                <li>Check if trading is concentrated among a small number of wallets</li>
+                                <li>Verify the team's background and previous projects</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated wash trading operations use advanced techniques to obscure connections between controlled wallets, including multiple layers of transactions through intermediary addresses, using different IP addresses, and timing transactions to mimic organic trading patterns. Some operations leverage flash loans to fund trading without significant capital requirements. The most advanced schemes distribute trading across multiple NFT marketplaces to create the appearance of broad market interest. Some manipulators also create artificial bidding wars between their controlled accounts to suggest competitive demand and exploit marketplace algorithms that highlight active collections.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impersonation Support Scams -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-headset"></i> Impersonation Support Scams
+                        </h2>
+                        <span class="difficulty-badge difficulty-easy">EASY</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        Impersonation support scams involve fraudsters posing as customer service representatives from legitimate cryptocurrency exchanges, wallet providers, or DeFi protocols. They target users who post about technical issues on social media or forums, offering to "help" resolve problems. These fake support agents direct victims to malicious websites or request sensitive information like private keys, seed phrases, or remote access to their devices.
+                        </p>
+                    <button class="learn-more-btn" data-target="fakesupport-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="fakesupport-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Discord Support Infiltration
+                                </h4>
+                                <p class="case-study-content">
+                                A user experiencing difficulties withdrawing funds from a major DeFi protocol posted about their issue
+                                </p>
+                            <img src="images/fakesupport.jpg" alt="Impersonation Support Scam" class="case-study-image">
+                                <p class="case-study-content">
+                                The scammer directed the victim to a fake support website, where they were asked to pay a fee to recover their funds. The victim paid the fee, but the funds were not recovered.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Verify announcements across multiple official channels before taking action</li>
+                                <li>Never connect your wallet through links in social media posts, even from verified accounts</li>
+                                <li>Check the project's official website directly by manually typing the URL</li>
+                                <li>Be wary of urgent security announcements creating time pressure</li>
+                                <li>Look for unusual posting patterns or communication styles in official accounts</li>
+                                <li>Set up transaction notifications and security delays for large withdrawals</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Impersonation support scams typically begin with social engineering to gain initial access to account credentials, followed by targeted phishing, credential theft, or SIM swapping attacks. Advanced attackers monitor project development schedules to time their attacks during legitimate update periods when users expect changes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Fake DApp Browser Extensions -->
+                <div class="scam-card fade-in delay-2">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-puzzle-piece"></i> Fake DApp Browser Extensions
+                        </h2>
+                        <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        Fake DApp browser extension scams involve counterfeit versions of popular Web3 extensions like MetaMask or Trust Wallet distributed through browser extension stores. These malicious extensions function identically to legitimate ones but contain hidden code that steals private keys, seed phrases, or intercepts transactions. Some even replace receiving addresses during transactions while displaying the correct address to the user.
+                        </p>
+                    <button class="learn-more-btn" data-target="extension-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="extension-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The MetaConnect Impersonation
+                                </h4>
+                                <p class="case-study-content">
+                                A sophisticated team of attackers created "MetaConnect," a near-perfect clone of the popular MetaMask extension. They used paid advertising to position their malicious extension at the top of search results for "metamask wallet extension" on Google and within browser extension stores.
+                                </p>
+                            <img src="images/fake-extension.jpg" alt="Fake Browser Extension" class="case-study-image">
+                                <p class="case-study-content">
+                                The extension had a professionally designed interface identical to the original, with full functionality for creating wallets, importing accounts, and connecting to dApps. However, it contained obfuscated code that transmitted seed phrases and private keys to attacker-controlled servers upon creation or import. Victims would initially be able to use the wallet normally, but after a delay of 2-3 weeks (to avoid immediate correlation), the extension would drain their funds during a legitimate transaction. The attack affected over 12,000 users before being detected and removed from extension stores, with estimated losses of $14.5 million in various cryptocurrencies.
+                            </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Only download extensions directly from official project websites, not search results</li>
+                                <li>Verify extension developer names and user counts before installing</li>
+                                <li>Check extension permissions and be suspicious of unnecessary access requests</li>
+                                <li>Verify the extension's last update date and review history</li>
+                                <li>Use hardware wallets for additional security when possible</li>
+                                <li>Regularly check official communication channels for security alerts</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated fake extensions employ various techniques to evade detection, including delayed activation of malicious code, obfuscation, and polymorphic code that changes its signature. Some manipulate the DOM to show users different transaction details than what is actually being signed. Advanced variants implement WebSocket connections to command and control servers that can remotely trigger exploits when high-value targets are identified.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            <!-- Counterfeit Hardware Wallets -->
+                <div class="scam-card fade-in">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-microchip"></i> Counterfeit Hardware Wallets
+                        </h2>
+                        <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                    </div>
+                    <div class="scam-card-body">
+                        <p class="scam-description">
+                        Counterfeit hardware wallet scams involve selling fake versions of popular cryptocurrency hardware wallets like Ledger or Trezor. These counterfeits look nearly identical to genuine devices but contain modified firmware that steals private keys or creates predictable key generation patterns known to the attackers. Some are even shipped with preconfigured seed phrases that attackers can later use to drain funds.
+                        </p>
+                    <button class="learn-more-btn" data-target="hardwarewallet-content">
+                            Learn More <i class="fas fa-chevron-down"></i>
+                        </button>
+                    <div class="extended-content" id="hardwarewallet-content">
+                            <div class="case-study">
+                                <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Pre-Seeded Device Scam
+                                </h4>
+                                <p class="case-study-content">
+                                A sophisticated operation sold counterfeit versions of a popular hardware wallet through third-party retailers and discounted online marketplaces. The devices were perfect replicas of the original, including packaging and security seals that appeared untampered.
+                                </p>
+                            <img src="images/fake-hardware.jpg" alt="Counterfeit Hardware Wallet" class="case-study-image">
+                                <p class="case-study-content">
+                                When users initialized these devices, they appeared to generate new random seed phrases normally. However, the counterfeit devices were presenting one of several thousand pre-generated seed phrases already known to the attackers. The modified firmware also contained a backdoor that would transmit any newly imported private keys. Victims would use the wallet normally for months before the attackers simultaneously drained all affected wallets during a holiday weekend to minimize real-time detection. The scam affected approximately 6,500 users worldwide with losses totaling $28 million. Blockchain analysis revealed the stolen funds were laundered through multiple mixing services and privacy-focused cryptocurrencies.
+                                </p>
+                            </div>
+
+                            <div class="protection-tips">
+                                <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                                <ul>
+                                <li>Only purchase hardware wallets directly from the manufacturer's official website</li>
+                                <li>Verify device authenticity using the manufacturer's verification tools</li>
+                                <li>Check for tampering with packaging and security seals</li>
+                                <li>Never use a device that comes with a pre-written seed phrase</li>
+                                <li>Update firmware immediately after receiving the device</li>
+                                <li>Consider adding a strong passphrase (25th word) to your seed</li>
+                                </ul>
+                            </div>
+
+                            <div class="tech-details">
+                                <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated counterfeit hardware wallets employ various attack vectors, including compromised random number generators that produce deterministic seeds, modified secure elements that leak private keys, and firmware backdoors that can be remotely activated. Some counterfeits include hardware implants that transmit key material over Bluetooth or WiFi despite appearing disconnected. Advanced attacks may target the supply chain itself, compromising devices before they reach legitimate retailers. The most dangerous counterfeits pass all standard verification checks and only reveal their true nature when specific triggering conditions are met.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Wash Trading NFT Scams -->
+                <div class="scam-card fade-in delay-1">
+                    <div class="scam-card-header">
+                        <h2 class="scam-card-title">
+                        <i class="fas fa-paint-brush"></i> Wash Trading NFT Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Wash trading NFT scams involve artificially inflating the perceived value and demand for NFTs through self-dealing. Scammers repeatedly sell NFTs between wallets they control at increasingly higher prices to create a false history of appreciation and trading activity. When the manipulated NFTs appear valuable based on transaction history, they're sold to unwitting buyers who later discover the assets have little to no actual market demand.
+                    </p>
+                    <button class="learn-more-btn" data-target="washtrading-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="washtrading-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The CryptoArtists Collective
+                            </h4>
+                            <p class="case-study-content">
+                                A group calling themselves the "CryptoArtists Collective" launched a series of 10,000 generative art NFTs with modest initial pricing. Behind the scenes, the team controlled dozens of wallet addresses that began purchasing and trading the NFTs between themselves.
+                            </p>
+                            <img src="images/nft-wash-trading.jpg" alt="NFT Wash Trading Schema" class="case-study-image">
+                            <p class="case-study-content">
+                                Over three months, these controlled wallets executed more than 1,400 trades, steadily increasing prices from 0.1 ETH to over 8 ETH per NFT. The artificial activity attracted attention, with the collection appearing in "trending" sections of major NFT marketplaces. The team leveraged this visibility to secure collaborations with smaller legitimate projects and paid several influencers to promote the collection. When prices peaked, they sold hundreds of NFTs to genuine buyers at inflated prices totaling approximately 2,800 ETH (roughly $4.9 million at the time). Shortly after, they abandoned the project and ceased all development, causing prices to collapse by over 98%. Blockchain analysis later revealed that 85% of the trading volume came from wallets connected to the creators.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Analyze trading patterns and look for suspicious transaction histories</li>
+                                <li>Research the actual community size vs. trading volume (discord members, social engagement)</li>
+                                <li>Use blockchain analytics tools to check for connected wallets</li>
+                                <li>Be skeptical of collections that suddenly appear in trending lists</li>
+                                <li>Check if trading is concentrated among a small number of wallets</li>
+                                <li>Verify the team's background and previous projects</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated wash trading operations use advanced techniques to obscure connections between controlled wallets, including multiple layers of transactions through intermediary addresses, using different IP addresses, and timing transactions to mimic organic trading patterns. Some operations leverage flash loans to fund trading without significant capital requirements. The most advanced schemes distribute trading across multiple NFT marketplaces to create the appearance of broad market interest. Some manipulators also create artificial bidding wars between their controlled accounts to suggest competitive demand and exploit marketplace algorithms that highlight active collections.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impersonation Support Scams -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-headset"></i> Impersonation Support Scams
+                    </h2>
+                    <span class="difficulty-badge difficulty-easy">EASY</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Impersonation support scams involve fraudsters posing as customer service representatives from legitimate cryptocurrency exchanges, wallet providers, or DeFi protocols. They target users who post about technical issues on social media or forums, offering to "help" resolve problems. These fake support agents direct victims to malicious websites or request sensitive information like private keys, seed phrases, or remote access to their devices.
+                    </p>
+                    <button class="learn-more-btn" data-target="fakesupport-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="fakesupport-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Discord Support Infiltration
+                            </h4>
+                            <p class="case-study-content">
+                                A user experiencing difficulties withdrawing funds from a major DeFi protocol posted about their issue
+                            </p>
+                            <img src="images/fakesupport.jpg" alt="Impersonation Support Scam" class="case-study-image">
+                            <p class="case-study-content">
+                                The scammer directed the victim to a fake support website, where they were asked to pay a fee to recover their funds. The victim paid the fee, but the funds were not recovered.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Verify announcements across multiple official channels before taking action</li>
+                                <li>Never connect your wallet through links in social media posts, even from verified accounts</li>
+                                <li>Check the project's official website directly by manually typing the URL</li>
+                                <li>Be wary of urgent security announcements creating time pressure</li>
+                                <li>Look for unusual posting patterns or communication styles in official accounts</li>
+                                <li>Set up transaction notifications and security delays for large withdrawals</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Impersonation support scams typically begin with social engineering to gain initial access to account credentials, followed by targeted phishing, credential theft, or SIM swapping attacks. Advanced attackers monitor project development schedules to time their attacks during legitimate update periods when users expect changes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fake DApp Browser Extensions -->
+            <div class="scam-card fade-in delay-2">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-puzzle-piece"></i> Fake DApp Browser Extensions
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Fake DApp browser extension scams involve counterfeit versions of popular Web3 extensions like MetaMask or Trust Wallet distributed through browser extension stores. These malicious extensions function identically to legitimate ones but contain hidden code that steals private keys, seed phrases, or intercepts transactions. Some even replace receiving addresses during transactions while displaying the correct address to the user.
+                    </p>
+                    <button class="learn-more-btn" data-target="extension-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="extension-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The MetaConnect Impersonation
+                            </h4>
+                            <p class="case-study-content">
+                                A sophisticated team of attackers created "MetaConnect," a near-perfect clone of the popular MetaMask extension. They used paid advertising to position their malicious extension at the top of search results for "metamask wallet extension" on Google and within browser extension stores.
+                            </p>
+                            <img src="images/fake-extension.jpg" alt="Fake Browser Extension" class="case-study-image">
+                            <p class="case-study-content">
+                                The extension had a professionally designed interface identical to the original, with full functionality for creating wallets, importing accounts, and connecting to dApps. However, it contained obfuscated code that transmitted seed phrases and private keys to attacker-controlled servers upon creation or import. Victims would initially be able to use the wallet normally, but after a delay of 2-3 weeks (to avoid immediate correlation), the extension would drain their funds during a legitimate transaction. The attack affected over 12,000 users before being detected and removed from extension stores, with estimated losses of $14.5 million in various cryptocurrencies.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Only download extensions directly from official project websites, not search results</li>
+                                <li>Verify extension developer names and user counts before installing</li>
+                                <li>Check extension permissions and be suspicious of unnecessary access requests</li>
+                                <li>Verify the extension's last update date and review history</li>
+                                <li>Use hardware wallets for additional security when possible</li>
+                                <li>Regularly check official communication channels for security alerts</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated fake extensions employ various techniques to evade detection, including delayed activation of malicious code, obfuscation, and polymorphic code that changes its signature. Some manipulate the DOM to show users different transaction details than what is actually being signed. Advanced variants implement WebSocket connections to command and control servers that can remotely trigger exploits when high-value targets are identified.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Counterfeit Hardware Wallets -->
+            <div class="scam-card fade-in">
+                <div class="scam-card-header">
+                    <h2 class="scam-card-title">
+                        <i class="fas fa-microchip"></i> Counterfeit Hardware Wallets
+                    </h2>
+                    <span class="difficulty-badge difficulty-sophisticated">SOPHISTICATED</span>
+                </div>
+                <div class="scam-card-body">
+                    <p class="scam-description">
+                        Counterfeit hardware wallet scams involve selling fake versions of popular cryptocurrency hardware wallets like Ledger or Trezor. These counterfeits look nearly identical to genuine devices but contain modified firmware that steals private keys or creates predictable key generation patterns known to the attackers. Some are even shipped with preconfigured seed phrases that attackers can later use to drain funds.
+                    </p>
+                    <button class="learn-more-btn" data-target="hardwarewallet-content">
+                        Learn More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="extended-content" id="hardwarewallet-content">
+                        <div class="case-study">
+                            <h4 class="case-study-title">
+                                <i class="fas fa-file-alt"></i> Case Study: The Pre-Seeded Device Scam
+                            </h4>
+                            <p class="case-study-content">
+                                A sophisticated operation sold counterfeit versions of a popular hardware wallet through third-party retailers and discounted online marketplaces. The devices were perfect replicas of the original, including packaging and security seals that appeared untampered.
+                            </p>
+                            <img src="images/fake-hardware.jpg" alt="Counterfeit Hardware Wallet" class="case-study-image">
+                            <p class="case-study-content">
+                                When users initialized these devices, they appeared to generate new random seed phrases normally. However, the counterfeit devices were presenting one of several thousand pre-generated seed phrases already known to the attackers. The modified firmware also contained a backdoor that would transmit any newly imported private keys. Victims would use the wallet normally for months before the attackers simultaneously drained all affected wallets during a holiday weekend to minimize real-time detection. The scam affected approximately 6,500 users worldwide with losses totaling $28 million. Blockchain analysis revealed the stolen funds were laundered through multiple mixing services and privacy-focused cryptocurrencies.
+                            </p>
+                        </div>
+
+                        <div class="protection-tips">
+                            <h4><i class="fas fa-shield-alt"></i> Protection Strategies</h4>
+                            <ul>
+                                <li>Only purchase hardware wallets directly from the manufacturer's official website</li>
+                                <li>Verify device authenticity using the manufacturer's verification tools</li>
+                                <li>Check for tampering with packaging and security seals</li>
+                                <li>Never use a device that comes with a pre-written seed phrase</li>
+                                <li>Update firmware immediately after receiving the device</li>
+                                <li>Consider adding a strong passphrase (25th word) to your seed</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-details">
+                            <h4><i class="fas fa-code"></i> Technical Details</h4>
+                            <p>Sophisticated counterfeit hardware wallets employ various attack vectors, including compromised random number generators that produce deterministic seeds, modified secure elements that leak private keys, and firmware backdoors that can be remotely activated. Some counterfeits include hardware implants that transmit key material over Bluetooth or WiFi despite appearing disconnected. Advanced attacks may target the supply chain itself, compromising devices before they reach legitimate retailers. The most dangerous counterfeits pass all standard verification checks and only reveal their true nature when specific triggering conditions are met.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Crypto Security Guide</a></li>
+                        <li><a href="#">Scam Recognition Tips</a></li>
+                        <li><a href="#">Recovery Resources</a></li>
+                        <li><a href="#">Verified Exchanges</a></li>
+                        <li><a href="#">Reporting Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Report a Scam</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest scam alerts and security tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CryptoCaution. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
+
+        // Learn more buttons functionality
+        document.querySelectorAll('.learn-more-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const targetContent = document.getElementById(targetId);
+                
+                if (targetContent.style.maxHeight) {
+                    targetContent.style.maxHeight = null;
+                    button.innerHTML = 'Learn More <i class="fas fa-chevron-down"></i>';
+                } else {
+                    targetContent.style.maxHeight = targetContent.scrollHeight + "px";
+                    button.innerHTML = 'Show Less <i class="fas fa-chevron-up"></i>';
+                }
+            });
+        });
+
+        // Filter functionality for search tags
+        document.addEventListener('DOMContentLoaded', function() {
+            // Define the scam categories
+            const scamCategories = {
+                'NFT Scams': ['paint-brush', 'wash trading', 'nft', 'copycat'],
+                'Telegram Hacks': ['telegram', 'messaging', 'social', 'chat'],
+                'Wallet Drainers': ['wallet', 'clipboard', 'drain', 'private key', 'seed phrase', 'microchip', 'hardware', 'extension', 'browser'],
+                'DeFi Exploits': ['water', 'rug pull', 'liquidity', 'defi', 'yield', 'smart contract'],
+                'Twitter Scams': ['twitter', 'social media', 'impersonation', 'account takeover', 'users-cog', 'giveaway']
+            };
+
+            // Add click event listeners to search tags
+            const searchTags = document.querySelectorAll('.search-tag');
+            searchTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const filterText = this.textContent.trim();
+                    filterScamCards(filterText);
+                    
+                    // Show visual feedback for selected filter
+                    searchTags.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Add search functionality
+            const searchInput = document.getElementById('scam-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchText = this.value.trim().toLowerCase();
+                    if (searchText.length > 2) {
+                        filterScamCards(searchText);
+                        // Remove active class from tags when using search
+                        searchTags.forEach(t => t.classList.remove('active'));
+                    } else if (searchText.length === 0) {
+                        // Show all cards when search is cleared
+                        showAllScamCards();
+                        // Remove active class from tags
+                        searchTags.forEach(t => t.classList.remove('active'));
+                    }
+                });
+            }
+
+            // Function to filter scam cards based on search tag or search text
+            function filterScamCards(filterText) {
+                const scamCards = document.querySelectorAll('.scam-card');
+                const filterTextLower = filterText.toLowerCase();
+                let matchingKeywords = [];
+                
+                // Check if this is a category filter
+                if (scamCategories[filterText]) {
+                    matchingKeywords = scamCategories[filterText];
+                }
+                
+                scamCards.forEach(card => {
+                    const cardText = card.textContent.toLowerCase();
+                    const iconElements = card.querySelectorAll('i');
+                    let iconClasses = [];
+                    
+                    // Get all icon classes
+                    iconElements.forEach(icon => {
+                        const classArr = Array.from(icon.classList);
+                        iconClasses = [...iconClasses, ...classArr.map(cls => cls.replace('fa-', ''))];
+                    });
+                    
+                    // Check if card matches filter text or category keywords
+                    if (matchingKeywords.length > 0) {
+                        // Check for category match
+                        const hasMatch = matchingKeywords.some(keyword => 
+                            cardText.includes(keyword.toLowerCase()) || 
+                            iconClasses.includes(keyword.toLowerCase())
+                        );
+                        card.style.display = hasMatch ? 'block' : 'none';
+                    } else {
+                        // Direct text search
+                        card.style.display = cardText.includes(filterTextLower) ? 'block' : 'none';
+                    }
+                });
+            }
+
+            // Function to show all scam cards
+            function showAllScamCards() {
+                const scamCards = document.querySelectorAll('.scam-card');
+                scamCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+            }
+
+            // Add clear filters button functionality
+            const searchButton = document.querySelector('.search-bar button');
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    searchInput.value = '';
+                    showAllScamCards();
+                    searchTags.forEach(t => t.classList.remove('active'));
+                });
+            }
+        });
+    </script>
+</body>
+</html>
